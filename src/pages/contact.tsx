@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,24 +10,59 @@ export default function Contact() {
     phone: '',
     subject: '',
     message: '',
-    consent: false,
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Construct mailto link with form data
-    const subject = encodeURIComponent(formData.subject || 'Demande de contact');
-    const body = encodeURIComponent(
-      `Nom: ${formData.name}\nEmail: ${formData.email}\nTéléphone: ${formData.phone}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:contact.ghbat@gmail.com?subject=${subject}&body=${body}`;
+
+    if (!turnstileToken) {
+      setStatus('error');
+      setErrorMessage('Vérification de sécurité en cours, veuillez réessayer.');
+      return;
+    }
+
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          turnstileToken,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setStatus('error');
+        setErrorMessage(data.message || 'Une erreur est survenue.');
+        return;
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTurnstileToken(null);
+    } catch {
+      setStatus('error');
+      setErrorMessage('Une erreur est survenue. Veuillez réessayer.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+      [name]: value,
     }));
   };
 
@@ -35,6 +71,12 @@ export default function Contact() {
       <Head>
         <title>Contact | GH Bâtiment - Demandez votre devis gratuit</title>
         <meta name="description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
+        <link rel="canonical" href="https://www.ghbat.fr/contact" />
+        <meta property="og:title" content="Contact | GH Bâtiment - Demandez votre devis gratuit" />
+        <meta property="og:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
+        <meta property="og:url" content="https://www.ghbat.fr/contact" />
+        <meta name="twitter:title" content="Contact | GH Bâtiment - Devis gratuit" />
+        <meta name="twitter:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
       </Head>
 
       {/* Hero - Split Design */}
@@ -261,33 +303,58 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Consent */}
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    name="consent"
-                    required
-                    checked={formData.consent}
-                    onChange={handleChange}
-                    className="mt-1 w-5 h-5 border-2 border-concrete-300 text-copper focus:ring-copper rounded-none cursor-pointer"
-                  />
-                  <label htmlFor="consent" className="text-sm text-concrete-500 cursor-pointer">
-                    J&apos;accepte que mes données soient traitées dans le cadre de ma demande. *
-                  </label>
-                </div>
+                {/* Turnstile invisible captcha */}
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                  options={{ size: 'invisible' }}
+                />
+
+                {/* Data notice */}
+                <p className="text-xs text-concrete-400">
+                  Vos données sont utilisées uniquement pour répondre à votre demande.
+                </p>
 
                 {/* Submit */}
                 <button
                   type="submit"
+                  disabled={status === 'loading' || status === 'success'}
                   className="group w-full sm:w-auto px-8 py-4 bg-copper text-white font-semibold text-sm uppercase tracking-wider
-                    hover:bg-concrete-900 transition-colors flex items-center justify-center gap-3"
+                    hover:bg-concrete-900 transition-colors flex items-center justify-center gap-3
+                    disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Envoyer</span>
-                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  {status === 'loading' ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      <span>Envoi en cours...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Envoyer</span>
+                      <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </>
+                  )}
                 </button>
+
+                {/* Feedback messages */}
+                {status === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
+                    <p className="font-semibold">Message envoyé avec succès !</p>
+                    <p>Nous vous répondrons sous 48h.</p>
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm">
+                    <p>{errorMessage}</p>
+                  </div>
+                )}
               </form>
             </div>
           </div>

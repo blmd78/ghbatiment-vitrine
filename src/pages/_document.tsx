@@ -14,8 +14,9 @@ export default function Document() {
           rel="stylesheet"
         />
 
-        {/* Favicon */}
+        {/* Favicon & Apple Touch Icon */}
         <link rel="icon" href="/images/LogoGH.webp" />
+        <link rel="apple-touch-icon" href="/images/LogoGH.webp" />
 
         {/* Theme color */}
         <meta name="theme-color" content="#1C1917" />

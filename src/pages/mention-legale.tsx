@@ -49,8 +49,14 @@ export default function MentionLegale() {
   return (
     <>
       <Head>
-        <title>Mentions légales - GH Batiment</title>
-        <meta name="description" content="Mentions légales de GH Batiment" />
+        <title>Mentions légales - GH Bâtiment</title>
+        <meta name="description" content="Mentions légales de GH Bâtiment SASU, entreprise générale du bâtiment à Wissous (91320). SIRET, hébergeur et informations juridiques." />
+        <link rel="canonical" href="https://www.ghbat.fr/mention-legale" />
+        <meta property="og:title" content="Mentions légales - GH Bâtiment" />
+        <meta property="og:description" content="Mentions légales de GH Bâtiment SASU, entreprise générale du bâtiment à Wissous (91320). SIRET, hébergeur et informations juridiques." />
+        <meta property="og:url" content="https://www.ghbat.fr/mention-legale" />
+        <meta name="twitter:title" content="Mentions légales - GH Bâtiment" />
+        <meta name="twitter:description" content="Mentions légales de GH Bâtiment SASU, entreprise générale du bâtiment à Wissous (91320)." />
       </Head>
 
       <div className="min-h-[85vh] py-8 px-4 max-w-5xl mx-auto">

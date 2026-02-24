@@ -226,6 +226,12 @@ export default function Home() {
       <Head>
         <title>GH Bâtiment | Entreprise du bâtiment tous corps de métier - Île-de-France</title>
         <meta name="description" content="GH Bâtiment, entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
+        <link rel="canonical" href="https://www.ghbat.fr/" />
+        <meta property="og:title" content="GH Bâtiment | Entreprise du bâtiment tous corps de métier - Île-de-France" />
+        <meta property="og:description" content="GH Bâtiment, entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
+        <meta property="og:url" content="https://www.ghbat.fr/" />
+        <meta name="twitter:title" content="GH Bâtiment | Entreprise du bâtiment tous corps de métier" />
+        <meta name="twitter:description" content="Entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
       </Head>
 
       {/* Hero Section - Split Layout with Diagonal Cut */}

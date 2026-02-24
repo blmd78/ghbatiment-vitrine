@@ -46,8 +46,14 @@ export default function Politique() {
   return (
     <>
       <Head>
-        <title>Politique de confidentialité - GH Batiment</title>
-        <meta name="description" content="Politique de confidentialité de GH Batiment" />
+        <title>Politique de confidentialité - GH Bâtiment</title>
+        <meta name="description" content="Politique de confidentialité de GH Bâtiment. Gestion de vos données personnelles, cookies et droits RGPD." />
+        <link rel="canonical" href="https://www.ghbat.fr/politique" />
+        <meta property="og:title" content="Politique de confidentialité - GH Bâtiment" />
+        <meta property="og:description" content="Politique de confidentialité de GH Bâtiment. Gestion de vos données personnelles, cookies et droits RGPD." />
+        <meta property="og:url" content="https://www.ghbat.fr/politique" />
+        <meta name="twitter:title" content="Politique de confidentialité - GH Bâtiment" />
+        <meta name="twitter:description" content="Politique de confidentialité de GH Bâtiment. Gestion de vos données personnelles et droits RGPD." />
       </Head>
 
       <div className="min-h-[85vh] py-8 px-4 max-w-5xl mx-auto">
