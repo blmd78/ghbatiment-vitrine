@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 
+import chantierImg from '../../public/images/Savoir-faire/chantier.jpeg';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -84,9 +86,10 @@ export default function Contact() {
         {/* Background Image - Right Side */}
         <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full">
           <Image
-            src="/images/Savoir-faire/chantier.jpeg"
+            src={chantierImg}
             alt="Contactez GH Bâtiment"
             fill
+            placeholder="blur"
             className="object-cover"
             priority
           />
@@ -211,7 +214,7 @@ export default function Contact() {
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name & Email */}
+                {/* Name & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
@@ -225,30 +228,10 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
-                        focus:border-copper focus:ring-0 text-concrete-900 placeholder-concrete-400 transition-colors"
+                        focus:border-copper focus:ring-0 focus:outline-none text-concrete-900 placeholder-concrete-400 transition-colors"
                       placeholder="Jean Dupont"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
-                        focus:border-copper focus:ring-0 text-concrete-900 placeholder-concrete-400 transition-colors"
-                      placeholder="jean@exemple.com"
-                    />
-                  </div>
-                </div>
-
-                {/* Phone & Subject */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="phone" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
                       Téléphone
@@ -260,29 +243,49 @@ export default function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
-                        focus:border-copper focus:ring-0 text-concrete-900 placeholder-concrete-400 transition-colors"
+                        focus:border-copper focus:ring-0 focus:outline-none text-concrete-900 placeholder-concrete-400 transition-colors"
                       placeholder="06 00 00 00 00"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
-                      Objet
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
-                        focus:border-copper focus:ring-0 text-concrete-900 transition-colors cursor-pointer"
-                    >
-                      <option value="">Sélectionnez</option>
-                      <option value="Demande de devis">Demande de devis</option>
-                      <option value="Demande d'information">Demande d&apos;information</option>
-                      <option value="Prise de rendez-vous">Prise de rendez-vous</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                  </div>
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label htmlFor="email" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
+                      focus:border-copper focus:ring-0 focus:outline-none text-concrete-900 placeholder-concrete-400 transition-colors"
+                    placeholder="jean@exemple.com"
+                  />
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label htmlFor="subject" className="block text-xs font-medium text-concrete-500 tracking-wider uppercase mb-2">
+                    Objet
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
+                      focus:border-copper focus:ring-0 focus:outline-none text-concrete-900 transition-colors cursor-pointer"
+                  >
+                    <option value="">Sélectionnez</option>
+                    <option value="Demande de devis">Demande de devis</option>
+                    <option value="Demande d'information">Demande d&apos;information</option>
+                    <option value="Prise de rendez-vous">Prise de rendez-vous</option>
+                    <option value="Autre">Autre</option>
+                  </select>
                 </div>
 
                 {/* Message */}
@@ -298,7 +301,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-concrete-200
-                      focus:border-copper focus:ring-0 text-concrete-900 placeholder-concrete-400 transition-colors resize-none"
+                      focus:border-copper focus:ring-0 focus:outline-none text-concrete-900 placeholder-concrete-400 transition-colors resize-none"
                     placeholder="Décrivez votre projet..."
                   />
                 </div>
@@ -363,9 +366,12 @@ export default function Contact() {
       </section>
 
       {/* Map Section */}
-      <section className="h-[400px] lg:h-[500px] relative bg-concrete-200">
-        {/* Map container */}
-        <div className="absolute inset-0">
+      <section className="h-[400px] lg:h-[500px] relative bg-concrete-200 overflow-hidden">
+        {/* Transparent overlay to block map interactions */}
+        <div className="absolute inset-0 z-10" />
+
+        {/* Map container - oversized to crop Google Maps UI elements */}
+        <div className="absolute -top-[100px] -bottom-[100px] -left-[400px] -right-[400px]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.8968509645856!2d2.3234!3d48.7334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d9eb92c5c7%3A0x2d4a5d4b6aee6d9a!2s4%20Rue%20Charles%20Legros%2C%2091320%20Wissous!5e0!3m2!1sfr!2sfr!4v1706000000000!5m2!1sfr!2sfr"
             width="100%"
@@ -376,9 +382,6 @@ export default function Contact() {
             title="Localisation GH Bâtiment"
           />
         </div>
-
-        {/* Transparent overlay to block map interactions */}
-        <div className="absolute inset-0 z-10" />
 
         {/* Overlay badge */}
         <a

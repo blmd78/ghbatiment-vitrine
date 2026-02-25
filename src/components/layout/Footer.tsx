@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import logoImg from '../../../public/images/LogoGH.webp';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -17,10 +19,11 @@ export default function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="mb-4 inline-flex items-center gap-3">
               <Image
-                src="/images/LogoGH.webp"
+                src={logoImg}
                 alt="GH Bâtiment"
                 width={45}
                 height={45}
+                placeholder="blur"
               />
             </Link>
             <p className="mb-4 max-w-sm text-sm text-concrete-400">
@@ -75,7 +78,7 @@ export default function Footer() {
           <p className="text-sm text-concrete-500">
             © {currentYear} GH Bâtiment SASU. Tous droits réservés.
           </p>
-          <p className="text-sm text-concrete-500 opacity-50">Forgemaged by PALATUN</p>
+          <a href="https://palatun.com" target="_blank" rel="noopener noreferrer" className="text-sm text-concrete-400 transition-colors hover:text-copper">Forgemaged by <span className="font-medium text-copper">PALATUN</span></a>
         </div>
       </div>
     </footer>

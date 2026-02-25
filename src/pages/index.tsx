@@ -8,19 +8,122 @@ import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 
+// Images — Hero & Sections
+import heroImg from '../../public/images/Home2.jpeg';
+import renovationImg from '../../public/images/Savoir-faire/renovation.jpeg';
+import bandeauImg from '../../public/images/Savoir-faire/bandeau.jpg';
+
+// Images — Partenaires
+import cedeoImg from '../../public/images/Partenaire/cedeo.png';
+import pointPImg from '../../public/images/Partenaire/pointP.png';
+import carrelageRogerImg from '../../public/images/Partenaire/carrelageRoger.png';
+import kdiImg from '../../public/images/Partenaire/kdi.png';
+import chossiereImg from '../../public/images/Partenaire/chossiere.png';
+import raboniImg from '../../public/images/Partenaire/raboni.png';
+import nolletImg from '../../public/images/Partenaire/nollet.png';
+import laPaletteImg from '../../public/images/Partenaire/lapalette.jpeg';
+import cogefermImg from '../../public/images/Partenaire/cogeferm.png';
+import lossignolImg from '../../public/images/Partenaire/lossignol.jpeg';
+import petruzellaImg from '../../public/images/Partenaire/petruzella.jpeg';
+
+// Images — Album: Théâtre de Rungis
+import rungis1 from '../../public/images/RealisationChantier/HallRungis/1.webp';
+import rungis2 from '../../public/images/RealisationChantier/HallRungis/2.webp';
+import rungis3 from '../../public/images/RealisationChantier/HallRungis/3.webp';
+import rungis4 from '../../public/images/RealisationChantier/HallRungis/4.webp';
+import rungis5 from '../../public/images/RealisationChantier/HallRungis/5.webp';
+import rungis6 from '../../public/images/RealisationChantier/HallRungis/6.webp';
+import rungis7 from '../../public/images/RealisationChantier/HallRungis/7.webp';
+import rungis8 from '../../public/images/RealisationChantier/HallRungis/8.webp';
+import rungis9 from '../../public/images/RealisationChantier/HallRungis/9.webp';
+
+// Images — Album: Terrasse & Pergola
+import pergola1 from '../../public/images/RealisationChantier/Pergola/IMG_1675_1.jpeg';
+import pergola2 from '../../public/images/RealisationChantier/Pergola/IMG_1965.jpeg';
+import pergola3 from '../../public/images/RealisationChantier/Pergola/IMG_1966.jpeg';
+import pergola4 from '../../public/images/RealisationChantier/Pergola/IMG_6041.jpeg';
+import pergola5 from '../../public/images/RealisationChantier/Pergola/IMG_7157.jpg';
+import pergola6 from '../../public/images/RealisationChantier/Pergola/IMG_7158.jpg';
+import pergola7 from '../../public/images/RealisationChantier/Pergola/IMG_7159.jpg';
+import pergola8 from '../../public/images/RealisationChantier/Pergola/IMG_7160.jpg';
+
+// Images — Album: Salle de bain
+import sdb1 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4839.jpg';
+import sdb2 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4840.jpg';
+import sdb3 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4841.jpg';
+import sdb4 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4842.jpg';
+import sdb5 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4843.jpg';
+import sdb6 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4844.jpg';
+import sdb7 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4845.jpg';
+import sdb8 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4846.jpg';
+import sdb9 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4847.jpg';
+
+// Images — Album: Ravalement
+import ravalement1 from '../../public/images/RealisationChantier/Ravalement/IMG_1433.jpeg';
+import ravalement2 from '../../public/images/RealisationChantier/Ravalement/IMG_1712.jpg';
+import ravalement3 from '../../public/images/RealisationChantier/Ravalement/IMG_1713.jpg';
+import ravalement4 from '../../public/images/RealisationChantier/Ravalement/IMG_1714.jpg';
+import ravalement5 from '../../public/images/RealisationChantier/Ravalement/IMG_1805.jpeg';
+import ravalement6 from '../../public/images/RealisationChantier/Ravalement/Ravalement.jpg';
+
+// Images — Album: Isolation
+import isolation1 from '../../public/images/RealisationChantier/Isolation/IMG_2726.jpg';
+import isolation2 from '../../public/images/RealisationChantier/Isolation/IMG_2748.jpg';
+import isolation3 from '../../public/images/RealisationChantier/Isolation/IMG_2765.jpg';
+import isolation4 from '../../public/images/RealisationChantier/Isolation/IMG_2766.jpg';
+import isolation5 from '../../public/images/RealisationChantier/Isolation/IMG_2767.jpg';
+import isolation6 from '../../public/images/RealisationChantier/Isolation/IMG_2768.jpg';
+import isolation7 from '../../public/images/RealisationChantier/Isolation/IMG_2769.jpg';
+import isolation8 from '../../public/images/RealisationChantier/Isolation/IMG_2784.jpg';
+import isolation9 from '../../public/images/RealisationChantier/Isolation/IMG_2785.jpg';
+import isolation10 from '../../public/images/RealisationChantier/Isolation/IMG_2786.jpg';
+import isolation11 from '../../public/images/RealisationChantier/Isolation/IMG_2787.jpg';
+import isolation12 from '../../public/images/RealisationChantier/Isolation/IMG_2788.jpg';
+import isolation13 from '../../public/images/RealisationChantier/Isolation/IMG_2798.jpg';
+import isolation14 from '../../public/images/RealisationChantier/Isolation/IMG_2799.jpg';
+import isolation15 from '../../public/images/RealisationChantier/Isolation/IMG_WA01.jpeg';
+import isolation16 from '../../public/images/RealisationChantier/Isolation/IMG_WA02.jpeg';
+
+// Images — Album: Agrandissement
+import agrandissement1 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA01.jpeg';
+import agrandissement2 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA02.jpeg';
+import agrandissement3 from '../../public/images/RealisationChantier/Agrandissement/IMG_14921.jpg';
+import agrandissement4 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA03.jpeg';
+import agrandissement5 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA04.jpeg';
+import agrandissement6 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA05.jpeg';
+import agrandissement7 from '../../public/images/RealisationChantier/Agrandissement/IMG_1609.jpg';
+import agrandissement8 from '../../public/images/RealisationChantier/Agrandissement/IMG_1610.jpg';
+import agrandissement9 from '../../public/images/RealisationChantier/Agrandissement/IMG_8236.jpg';
+import agrandissement10 from '../../public/images/RealisationChantier/Agrandissement/IMG_8237.jpg';
+import agrandissement11 from '../../public/images/RealisationChantier/Agrandissement/IMG_8241.jpg';
+import agrandissement12 from '../../public/images/RealisationChantier/Agrandissement/IMG_9066.jpeg';
+import agrandissement13 from '../../public/images/RealisationChantier/Agrandissement/IMG_9068.jpeg';
+import agrandissement14 from '../../public/images/RealisationChantier/Agrandissement/IMG_9170.jpeg';
+import agrandissement15 from '../../public/images/RealisationChantier/Agrandissement/image_67215873.jpg';
+import agrandissement16 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA06.jpeg';
+import agrandissement17 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA07.jpeg';
+import agrandissement18 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA08.jpeg';
+import agrandissement19 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA09.jpeg';
+import agrandissement20 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA10.jpeg';
+import agrandissement21 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA11.jpeg';
+import agrandissement22 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA12.jpeg';
+import agrandissement23 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA13.jpeg';
+import agrandissement24 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA14.jpeg';
+import agrandissement25 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA15.jpeg';
+
 // Liste des partenaires
 const partenaires = [
-  { src: '/images/Partenaire/cedeo.png', alt: 'Cedeo', width: 100 },
-  { src: '/images/Partenaire/pointP.png', alt: 'Point P', width: 150 },
-  { src: '/images/Partenaire/carrelageRoger.png', alt: 'Carrelage Roger', width: 200 },
-  { src: '/images/Partenaire/kdi.png', alt: 'KDI', width: 100 },
-  { src: '/images/Partenaire/chossiere.png', alt: 'Chossiere', width: 100 },
-  { src: '/images/Partenaire/raboni.png', alt: 'Raboni', width: 100 },
-  { src: '/images/Partenaire/nollet.png', alt: 'Nollet', width: 100 },
-  { src: '/images/Partenaire/lapalette.jpeg', alt: 'La Palette', width: 200 },
-  { src: '/images/Partenaire/cogeferm.png', alt: 'Cogeferm', width: 200 },
-  { src: '/images/Partenaire/lossignol.jpeg', alt: 'Lossignol', width: 100 },
-  { src: '/images/Partenaire/petruzella.jpeg', alt: 'Petruzella', width: 100 },
+  { src: cedeoImg, alt: 'Cedeo', width: 100 },
+  { src: pointPImg, alt: 'Point P', width: 150 },
+  { src: carrelageRogerImg, alt: 'Carrelage Roger', width: 200 },
+  { src: kdiImg, alt: 'KDI', width: 100 },
+  { src: chossiereImg, alt: 'Chossiere', width: 100 },
+  { src: raboniImg, alt: 'Raboni', width: 100 },
+  { src: nolletImg, alt: 'Nollet', width: 100 },
+  { src: laPaletteImg, alt: 'La Palette', width: 200 },
+  { src: cogefermImg, alt: 'Cogeferm', width: 200 },
+  { src: lossignolImg, alt: 'Lossignol', width: 100 },
+  { src: petruzellaImg, alt: 'Petruzella', width: 100 },
 ];
 
 // Chiffres clés
@@ -36,121 +139,52 @@ const albums = [
     id: 'theatre-rungis',
     title: 'Théâtre de Rungis',
     category: 'Rénovation complète',
-    cover: '/images/RealisationChantier/HallRungis/9.webp',
-    images: [
-      '/images/RealisationChantier/HallRungis/1.webp',
-      '/images/RealisationChantier/HallRungis/2.webp',
-      '/images/RealisationChantier/HallRungis/3.webp',
-      '/images/RealisationChantier/HallRungis/4.webp',
-      '/images/RealisationChantier/HallRungis/5.webp',
-      '/images/RealisationChantier/HallRungis/6.webp',
-      '/images/RealisationChantier/HallRungis/7.webp',
-      '/images/RealisationChantier/HallRungis/8.webp',
-      '/images/RealisationChantier/HallRungis/9.webp',
-    ],
+    cover: rungis9,
+    images: [rungis1, rungis2, rungis3, rungis4, rungis5, rungis6, rungis7, rungis8, rungis9],
   },
   {
     id: 'pergola',
     title: 'Terrasse & Pergola',
     category: 'Aménagement extérieur',
-    cover: '/images/RealisationChantier/Pergola/IMG_7160.jpg',
-    images: [
-      '/images/RealisationChantier/Pergola/IMG_1675_1.jpeg',
-      '/images/RealisationChantier/Pergola/IMG_1965.jpeg',
-      '/images/RealisationChantier/Pergola/IMG_1966.jpeg',
-      '/images/RealisationChantier/Pergola/IMG_6041.jpeg',
-      '/images/RealisationChantier/Pergola/IMG_7157.jpg',
-      '/images/RealisationChantier/Pergola/IMG_7158.jpg',
-      '/images/RealisationChantier/Pergola/IMG_7159.jpg',
-      '/images/RealisationChantier/Pergola/IMG_7160.jpg',
-    ],
+    cover: pergola8,
+    images: [pergola1, pergola2, pergola3, pergola4, pergola5, pergola6, pergola7, pergola8],
   },
   {
     id: 'salle-de-bain',
     title: 'Salle de bain',
     category: 'Rénovation',
-    cover: '/images/RealisationChantier/SalleDeBain/IMG_4847.jpg',
-    images: [
-      '/images/RealisationChantier/SalleDeBain/IMG_4839.JPG',
-      '/images/RealisationChantier/SalleDeBain/IMG_4840.JPG',
-      '/images/RealisationChantier/SalleDeBain/IMG_4841.JPG',
-      '/images/RealisationChantier/SalleDeBain/IMG_4842.JPG',
-      '/images/RealisationChantier/SalleDeBain/IMG_4843.jpg',
-      '/images/RealisationChantier/SalleDeBain/IMG_4844.jpg',
-      '/images/RealisationChantier/SalleDeBain/IMG_4845.jpg',
-      '/images/RealisationChantier/SalleDeBain/IMG_4846.jpg',
-      '/images/RealisationChantier/SalleDeBain/IMG_4847.jpg',
-    ],
+    cover: sdb9,
+    images: [sdb1, sdb2, sdb3, sdb4, sdb5, sdb6, sdb7, sdb8, sdb9],
   },
   {
     id: 'ravalement',
     title: 'Ravalement de façade',
     category: 'Rénovation extérieure',
-    cover: '/images/RealisationChantier/Ravalement/Ravalement.JPG',
-    images: [
-      '/images/RealisationChantier/Ravalement/IMG_1433.jpeg',
-      '/images/RealisationChantier/Ravalement/IMG_1712.JPG',
-      '/images/RealisationChantier/Ravalement/IMG_1713.JPG',
-      '/images/RealisationChantier/Ravalement/IMG_1714.JPG',
-      '/images/RealisationChantier/Ravalement/IMG_1805.jpeg',
-      '/images/RealisationChantier/Ravalement/Ravalement.JPG',
-    ],
+    cover: ravalement6,
+    images: [ravalement1, ravalement2, ravalement3, ravalement4, ravalement5, ravalement6],
   },
   {
     id: 'isolation',
     title: 'Isolation par l\'extérieur',
     category: 'Isolation thermique',
-    cover: '/images/RealisationChantier/Isolation/IMG_2798.jpg',
+    cover: isolation13,
     images: [
-      '/images/RealisationChantier/Isolation/IMG_2726.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2748.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2765.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2766.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2767.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2768.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2769.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2784.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2785.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2786.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2787.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2788.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2798.jpg',
-      '/images/RealisationChantier/Isolation/IMG_2799.jpg',
-      '/images/RealisationChantier/Isolation/IMG_WA01.jpeg',
-      '/images/RealisationChantier/Isolation/IMG_WA02.jpeg',
+      isolation1, isolation2, isolation3, isolation4, isolation5, isolation6,
+      isolation7, isolation8, isolation9, isolation10, isolation11, isolation12,
+      isolation13, isolation14, isolation15, isolation16,
     ],
   },
   {
     id: 'agrandissement',
     title: 'Agrandissement',
     category: 'Construction & Extension',
-    cover: '/images/RealisationChantier/Agrandissement/IMG_WA06.jpeg',
+    cover: agrandissement16,
     images: [
-      '/images/RealisationChantier/Agrandissement/IMG_WA01.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA02.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_14921.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA03.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA04.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA05.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_1609.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_1610.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_8236.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_8237.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_8241.jpg',
-      '/images/RealisationChantier/Agrandissement/IMG_9066.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_9068.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_9170.jpeg',
-      '/images/RealisationChantier/Agrandissement/image_67215873.JPG',
-      '/images/RealisationChantier/Agrandissement/IMG_WA06.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA07.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA08.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA09.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA10.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA11.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA12.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA13.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA14.jpeg',
-      '/images/RealisationChantier/Agrandissement/IMG_WA15.jpeg',
+      agrandissement1, agrandissement2, agrandissement3, agrandissement4, agrandissement5,
+      agrandissement6, agrandissement7, agrandissement8, agrandissement9, agrandissement10,
+      agrandissement11, agrandissement12, agrandissement13, agrandissement14, agrandissement15,
+      agrandissement16, agrandissement17, agrandissement18, agrandissement19, agrandissement20,
+      agrandissement21, agrandissement22, agrandissement23, agrandissement24, agrandissement25,
     ],
   },
 ];
@@ -162,8 +196,7 @@ export default function Home() {
   const revealRefs = useRef<(HTMLElement | null)[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const isTouching = useRef(false);
+
   const [isEntering, setIsEntering] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -198,37 +231,6 @@ export default function Home() {
     };
   }, [selectedAlbum, closeAlbum]);
 
-  // Auto-scroll partenaires (compatible touch)
-  useEffect(() => {
-    const el = marqueeRef.current;
-    if (!el) return;
-    let animId: number;
-    const speed = 1; // px par frame
-
-    const scroll = () => {
-      if (!isTouching.current) {
-        el.scrollLeft += speed;
-        // Boucle infinie : quand on atteint la moitié, on revient au début
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0;
-        }
-      }
-      animId = requestAnimationFrame(scroll);
-    };
-
-    const onTouchStart = () => { isTouching.current = true; };
-    const onTouchEnd = () => { isTouching.current = false; };
-
-    el.addEventListener('touchstart', onTouchStart, { passive: true });
-    el.addEventListener('touchend', onTouchEnd, { passive: true });
-    animId = requestAnimationFrame(scroll);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      el.removeEventListener('touchstart', onTouchStart);
-      el.removeEventListener('touchend', onTouchEnd);
-    };
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -258,108 +260,130 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>GH Bâtiment | Entreprise du bâtiment tous corps de métier - Île-de-France</title>
-        <meta name="description" content="GH Bâtiment, entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
+        <title>GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Construction, Rénovation, Aménagement en Île-de-France</title>
+        <meta name="description" content="GH Bâtiment, entreprise générale du bâtiment et maîtrise d'œuvre tous corps d'état en Île-de-France. Construction, rénovation intérieure et extérieure, extension maison, ravalement de façade. Artisans qualifiés certifiés Qualibat, RGE. Devis gratuit." />
         <link rel="canonical" href="https://www.ghbat.fr/" />
-        <meta property="og:title" content="GH Bâtiment | Entreprise du bâtiment tous corps de métier - Île-de-France" />
-        <meta property="og:description" content="GH Bâtiment, entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
+        <meta name="keywords" content="entreprise générale bâtiment, tous corps de métier, construction Île-de-France, rénovation intérieure, rénovation extérieure, maîtrise d'œuvre, extension maison, ravalement façade, maçonnerie, charpente, menuiserie, plomberie, électricité, carrelage, peinture, isolation, artisan qualifié, Qualibat, RGE, devis gratuit" />
+        <meta property="og:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
+        <meta property="og:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
         <meta property="og:url" content="https://www.ghbat.fr/" />
-        <meta name="twitter:title" content="GH Bâtiment | Entreprise du bâtiment tous corps de métier" />
-        <meta name="twitter:description" content="Entreprise spécialisée en maîtrise d'œuvre et travaux tous corps d'état en Île-de-France. Construction, rénovation, aménagement depuis 2018." />
+        <meta name="twitter:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
+        <meta name="twitter:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
       </Head>
 
-      {/* Hero Section - Split Layout with Diagonal Cut */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Left side - Content with diagonal cut */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-[60%] bg-white clip-path-hero z-10">
-          {/* Decorative corner accent */}
-          <div className="absolute top-0 left-0 w-32 h-32 border-l-4 border-t-4 border-copper opacity-50" />
-
-          {/* Background texture */}
-          <div className="absolute inset-0 opacity-[0.03]"
+      {/* Hero Section - Full-bleed Cinematic */}
+      <section className="relative min-h-[85vh] overflow-hidden" aria-label="Présentation GH Bâtiment entreprise générale du bâtiment en Île-de-France">
+        {/* Full-bleed background image */}
+        <div className="absolute inset-0">
+          <Image
+            src={heroImg}
+            alt="GH Bâtiment - Entreprise générale du bâtiment tous corps de métier, chantier de construction et rénovation en Île-de-France"
+            fill
+            placeholder="blur"
+            className="object-cover hero-img-zoom"
+            priority
+          />
+          {/* Cinematic multi-layer overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-concrete-950/70 via-concrete-950/50 to-concrete-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-concrete-950/60 via-transparent to-transparent" />
+          {/* Grain texture */}
+          <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #1a1a1a 1px, transparent 0)`,
-              backgroundSize: '32px 32px'
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             }}
           />
         </div>
 
-        {/* Right side - Image */}
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[55%]">
-          <Image
-            src="/images/Home2.jpeg"
-            alt="GH Bâtiment - Chantier"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-transparent to-transparent lg:from-transparent" />
-        </div>
+        {/* Architectural frame accents */}
+        <div className="absolute top-8 left-6 md:left-12 lg:left-16 w-16 h-16 border-l-2 border-t-2 border-copper/40 z-20 animate-fade-in delay-600" />
+        <div className="absolute top-8 right-6 md:right-12 lg:right-16 w-16 h-16 border-r-2 border-t-2 border-copper/40 z-20 animate-fade-in delay-700" />
+        <div className="absolute bottom-8 right-6 md:right-12 lg:right-16 w-16 h-16 border-r-2 border-b-2 border-copper/40 z-20 animate-fade-in delay-800" />
 
         {/* Content */}
-        <div className="relative z-20 min-h-screen flex items-center">
-          <div className="w-full lg:w-[55%] px-6 md:px-12 lg:px-16 xl:px-24 py-24 lg:py-32">
+        <div className="relative z-20 flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-24 pt-32 pb-16 lg:pt-40 lg:pb-20">
+          <div className="max-w-4xl">
             {/* Eyebrow */}
-            <div className="flex items-center gap-4 mb-6 animate-fade-in-up">
-              <span className="inline-block w-12 h-1 bg-copper" />
-              <span className="text-copper font-semibold text-sm uppercase tracking-[0.3em]">
-                Île-de-France
+            <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
+              <span className="inline-block w-12 h-[2px] bg-copper" />
+              <span className="text-copper font-semibold text-xs md:text-sm uppercase tracking-[0.3em]">
+                Entreprise générale du bâtiment · Île-de-France
               </span>
             </div>
 
-            {/* Main title */}
-            <h1 className="font-display leading-none mb-6 text-[clamp(3rem,8vw,6rem)] tracking-tight animate-fade-in-up delay-100">
-              <span className="text-concrete-900">GH</span>{' '}
-              <span className="text-copper">BÂTIMENT</span>
+            {/* Main title - SEO H1 with full keywords */}
+            <h1 className="font-display leading-[0.9] mb-8 animate-fade-in-up delay-100">
+              <span className="block text-[clamp(4rem,12vw,9rem)] text-white tracking-tight">
+                <span>GH</span>{' '}
+                <span className="text-copper">BÂTIMENT</span>
+              </span>
+              <span className="block text-[clamp(1.1rem,2.5vw,1.75rem)] text-concrete-300 mt-4 tracking-[0.15em] font-display uppercase">
+                Construction, Rénovation &amp; Aménagement
+              </span>
             </h1>
 
-            {/* Tagline with decorative line */}
-            <div className="relative pl-6 border-l-2 border-copper/60 mb-8 animate-fade-in-up delay-300">
-              <p className="text-xl md:text-2xl font-display text-concrete-900 tracking-wide uppercase">
-                Tous corps de métier
-              </p>
-              <p className="text-concrete-500 mt-2">
-                Construction · Rénovation · Aménagement
+            {/* Copper divider */}
+            <div className="w-24 h-1 bg-gradient-to-r from-copper to-copper-light mb-8 animate-fade-in-up delay-200" />
+
+            {/* H2 Tagline with decorative line - Keywords rich */}
+            <div className="relative pl-6 border-l-2 border-copper/50 mb-8 animate-fade-in-up delay-300">
+              <h2 className="text-xl md:text-2xl font-display text-white tracking-wide uppercase">
+                Travaux tous corps de métier en Île-de-France
+              </h2>
+              <p className="text-concrete-400 mt-2 text-sm md:text-base">
+                Maçonnerie · Charpente · Menuiserie · Plomberie · Électricité · Carrelage · Peinture · Isolation
               </p>
             </div>
 
-            {/* Description */}
-            <p className="text-concrete-600 text-lg max-w-md leading-relaxed mb-10 animate-fade-in-up delay-400">
-              Votre projet entre les mains d&apos;experts qualifiés.
-              Maîtrise d&apos;œuvre et coordination complète depuis 2018.
+            {/* Description - SEO rich paragraph */}
+            <p className="text-concrete-300 text-base md:text-lg max-w-xl leading-relaxed mb-10 animate-fade-in-up delay-400">
+              <strong className="text-white font-semibold">Maîtrise d&apos;œuvre et coordination complète</strong> de vos projets par des artisans qualifiés.
+              Rénovation intérieure, rénovation extérieure, extension maison, ravalement de façade — votre chantier entre les mains d&apos;experts tous corps d&apos;état.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-12 animate-fade-in-up delay-500">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 px-7 py-4 bg-copper text-white font-bold uppercase tracking-wider text-sm
-                  hover:bg-concrete-900 transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider text-sm
+                  hover:bg-copper-light transition-all duration-300 shadow-lg shadow-copper/20"
               >
                 <span>Devis gratuit</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-
+              <a
+                href="tel:0980336060"
+                className="group inline-flex items-center gap-3 px-8 py-4 border border-white/25 text-white
+                  hover:border-copper hover:text-copper transition-all duration-300 backdrop-blur-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span className="text-sm font-semibold tracking-wide">09 80 33 60 60</span>
+              </a>
             </div>
 
-            {/* Certifications */}
-            <div className="flex flex-wrap items-center gap-3 animate-fade-in-up delay-600">
-              <span className="text-concrete-500 text-xs uppercase tracking-widest mr-2">Certifié</span>
-              <span className="px-3 py-1.5 bg-concrete-100 border border-concrete-200 text-concrete-700 text-xs font-medium tracking-wide">QUALIBAT</span>
-              <span className="px-3 py-1.5 bg-concrete-100 border border-concrete-200 text-concrete-700 text-xs font-medium tracking-wide">RGE</span>
-              <span className="px-3 py-1.5 bg-concrete-100 border border-concrete-200 text-concrete-700 text-xs font-medium tracking-wide">HANDIBAT</span>
-              <span className="px-3 py-1.5 bg-concrete-100 border border-concrete-200 text-concrete-700 text-xs font-medium tracking-wide">QUALIFELEC</span>
+            {/* Certifications & Scroll indicator - same row */}
+            <div className="flex flex-wrap items-center justify-between gap-4 animate-fade-in-up delay-600">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-concrete-400 text-xs uppercase tracking-widest mr-2">Artisan certifié</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Certification Qualibat - Qualification des entreprises de bâtiment">QUALIBAT</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Reconnu Garant de l'Environnement - Travaux de rénovation énergétique">RGE</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Handibat - Accessibilité et adaptation du bâtiment">HANDIBAT</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Qualifelec - Qualification des entreprises d'électricité">QUALIFELEC</span>
+              </div>
+
+              {/* Scroll indicator */}
+              <div className="hidden lg:flex items-center gap-3 animate-fade-in delay-800">
+                <div className="w-5.5 h-8.5 rounded-full border-2 border-white/30 flex justify-center pt-2">
+                  <div className="w-0.75 h-2 rounded-full bg-copper hero-scroll-dot" />
+                </div>
+                <span className="text-concrete-400 text-[9px] uppercase tracking-[0.25em]">Scroll</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Scroll indicator - Bottom left */}
-        <div className="absolute bottom-8 left-6 md:left-12 lg:left-16 z-30 flex items-center gap-4 animate-fade-in delay-1000">
-          <div className="w-px h-12 bg-gradient-to-b from-copper to-transparent" />
-          <span className="text-concrete-500 text-[10px] uppercase tracking-[0.2em]">Scroll</span>
         </div>
       </section>
 
@@ -386,21 +410,78 @@ export default function Home() {
           {/* Métiers Grid */}
           <div ref={addToRefs} className="reveal grid grid-cols-2 md:grid-cols-4 gap-px bg-concrete-800/50">
             {[
-              { name: 'Maçonnerie', icon: '◼' },
-              { name: 'Charpente', icon: '△' },
-              { name: 'Menuiserie', icon: '▭' },
-              { name: 'Plomberie', icon: '◯' },
-              { name: 'Électricité', icon: '⚡' },
-              { name: 'Carrelage', icon: '▦' },
-              { name: 'Peinture', icon: '◐' },
-              { name: 'Isolation', icon: '▤' },
+              { name: 'Maçonnerie', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <rect x="2" y="4" width="9" height="5" rx="0.5" />
+                  <rect x="13" y="4" width="9" height="5" rx="0.5" />
+                  <rect x="6" y="10" width="9" height="5" rx="0.5" />
+                  <rect x="2" y="16" width="9" height="5" rx="0.5" />
+                  <rect x="13" y="16" width="9" height="5" rx="0.5" />
+                  <rect x="17" y="10" width="5" height="5" rx="0.5" />
+                  <rect x="2" y="10" width="2" height="5" rx="0.5" />
+                </svg>
+              )},
+              { name: 'Charpente', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <path d="M2 20L12 4l10 16" />
+                  <path d="M6 14h12" />
+                  <path d="M8.5 9l3.5 5 3.5-5" />
+                </svg>
+              )},
+              { name: 'Menuiserie', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <rect x="4" y="2" width="16" height="20" rx="1" />
+                  <line x1="12" y1="2" x2="12" y2="22" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <circle cx="14.5" cy="12" r="1" fill="currentColor" />
+                </svg>
+              )},
+              { name: 'Plomberie', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <path d="M7 4v4a5 5 0 0010 0V4" />
+                  <path d="M7 8H4v3a3 3 0 003 3h0" />
+                  <path d="M17 8h3v3a3 3 0 01-3 3h0" />
+                  <path d="M10 16v4h4v-4" />
+                </svg>
+              )},
+              { name: 'Électricité', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+                </svg>
+              )},
+              { name: 'Carrelage', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <rect x="3" y="3" width="8" height="8" rx="0.5" />
+                  <rect x="13" y="3" width="8" height="8" rx="0.5" />
+                  <rect x="3" y="13" width="8" height="8" rx="0.5" />
+                  <rect x="13" y="13" width="8" height="8" rx="0.5" />
+                </svg>
+              )},
+              { name: 'Peinture', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <path d="M19 3H5a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                  <path d="M12 11v5" />
+                  <path d="M8 20h8" strokeLinecap="round" />
+                  <path d="M10 16h4v4h-4z" />
+                </svg>
+              )},
+              { name: 'Isolation', icon: (
+                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                  <rect x="4" y="2" width="16" height="20" rx="1" />
+                  <path d="M4 8h16" />
+                  <path d="M4 14h16" />
+                  <path d="M8 8v6" strokeDasharray="2 2" />
+                  <path d="M12 8v6" strokeDasharray="2 2" />
+                  <path d="M16 8v6" strokeDasharray="2 2" />
+                </svg>
+              )},
             ].map((metier, index) => (
               <div
                 key={metier.name}
                 className="bg-concrete-950 p-8 lg:p-12 text-center group hover:bg-concrete-900 transition-colors duration-300"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <span className="text-3xl lg:text-4xl text-copper/60 group-hover:text-copper transition-colors block mb-4">
+                <span className="text-copper/60 group-hover:text-copper transition-colors flex justify-center mb-4">
                   {metier.icon}
                 </span>
                 <span className="text-white font-medium tracking-wide">
@@ -491,9 +572,10 @@ export default function Home() {
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/Savoir-faire/renovation.jpeg"
+                    src={renovationImg}
                     alt="Qualité GH Bâtiment"
                     fill
+                    placeholder="blur"
                     className="object-cover"
                   />
                 </div>
@@ -534,7 +616,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[0].cover} alt={albums[0].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[0].cover} alt={albums[0].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[0].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -548,7 +630,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[1].cover} alt={albums[1].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[1].cover} alt={albums[1].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[1].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -562,7 +644,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[2].cover} alt={albums[2].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[2].cover} alt={albums[2].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[2].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -577,7 +659,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[3].cover} alt={albums[3].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[3].cover} alt={albums[3].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[3].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -591,7 +673,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[4].cover} alt={albums[4].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[4].cover} alt={albums[4].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[4].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -605,7 +687,7 @@ export default function Home() {
               className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
             >
               <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[5].cover} alt={albums[5].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+                <Image src={albums[5].cover} alt={albums[5].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[5].title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
@@ -670,6 +752,7 @@ export default function Home() {
                       src={image}
                       alt={`${selectedAlbum.title} - Photo ${index + 1}`}
                       fill
+                      placeholder="blur"
                       className="object-contain"
                       sizes="(max-width: 1536px) 100vw, 1536px"
                     />
@@ -706,9 +789,9 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Auto-scroll + swipe tactile */}
-          <div ref={marqueeRef} className="overflow-x-auto py-8 scrollbar-hide">
-            <div className="flex gap-8 lg:gap-16">
+          {/* Auto-scroll fluide CSS */}
+          <div className="overflow-hidden py-8">
+            <div className="flex gap-8 lg:gap-16 animate-marquee w-max">
               {[...partenaires, ...partenaires].map((partenaire, index) => (
                 <div
                   key={index}
@@ -719,6 +802,7 @@ export default function Home() {
                     alt={partenaire.alt}
                     width={partenaire.width}
                     height={60}
+                    placeholder="blur"
                     className="h-12 w-auto object-contain"
                   />
                 </div>
@@ -733,9 +817,10 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/Savoir-faire/bandeau.jpg"
+            src={bandeauImg}
             alt="Contactez GH Bâtiment"
             fill
+            placeholder="blur"
             className="object-cover"
           />
           {/* Layered overlays for depth */}
