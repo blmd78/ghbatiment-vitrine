@@ -5,8 +5,8 @@ export default function Document() {
     <Html lang="fr">
       <Head>
         {/* Favicon & Apple Touch Icon */}
-        <link rel="icon" href="/images/LogoGH.webp" />
-        <link rel="apple-touch-icon" href="/images/LogoGH.webp" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
 
         {/* Theme color */}

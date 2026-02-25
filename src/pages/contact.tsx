@@ -303,11 +303,12 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Turnstile invisible captcha */}
+                {/* Turnstile (invisible) */}
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
                   onSuccess={(token) => setTurnstileToken(token)}
                   onExpire={() => setTurnstileToken(null)}
+                  onError={() => setTurnstileToken(null)}
                   options={{ size: 'invisible' }}
                 />
 
