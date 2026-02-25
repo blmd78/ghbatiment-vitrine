@@ -6,7 +6,7 @@ import { z } from 'zod/v4';
 const SITE_NAME = 'GH Bâtiment';
 const ACCENT_COLOR = '#B87333';
 const FROM_EMAIL = 'GH Bâtiment <contact@ghbat.fr>';
-const TO_EMAIL = process.env.CONTACT_EMAIL || 'benoitgasnier.pro@gmail.com';
+const TO_EMAIL = process.env.CONTACT_EMAIL || 'contact.ghbat@gmail.com';
 
 // ─── Rate limiting (sliding window en mémoire) ──────────────────────────────
 const WINDOW_MS = 60 * 60 * 1000; // 1 heure

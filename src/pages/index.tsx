@@ -63,8 +63,7 @@ import ravalement1 from '../../public/images/RealisationChantier/Ravalement/IMG_
 import ravalement2 from '../../public/images/RealisationChantier/Ravalement/IMG_1712.jpg';
 import ravalement3 from '../../public/images/RealisationChantier/Ravalement/IMG_1713.jpg';
 import ravalement4 from '../../public/images/RealisationChantier/Ravalement/IMG_1714.jpg';
-import ravalement5 from '../../public/images/RealisationChantier/Ravalement/IMG_1805.jpeg';
-import ravalement6 from '../../public/images/RealisationChantier/Ravalement/Ravalement.jpg';
+import ravalement5 from '../../public/images/RealisationChantier/Ravalement/Ravalement.jpg';
 
 // Images — Album: Isolation
 import isolation1 from '../../public/images/RealisationChantier/Isolation/IMG_2726.jpg';
@@ -160,8 +159,8 @@ const albums = [
     id: 'ravalement',
     title: 'Ravalement de façade',
     category: 'Rénovation extérieure',
-    cover: ravalement6,
-    images: [ravalement1, ravalement2, ravalement3, ravalement4, ravalement5, ravalement6],
+    cover: ravalement5,
+    images: [ravalement1, ravalement2, ravalement3, ravalement4, ravalement5],
   },
   {
     id: 'isolation',
