@@ -20,7 +20,7 @@ const bebasNeue = Bebas_Neue({
   display: "swap",
 });
 
-const SITE_URL = "https://www.ghbat.fr";
+const SITE_URL = "https://ghbat.fr";
 
 const webSiteJsonLd = {
   "@context": "https://schema.org",

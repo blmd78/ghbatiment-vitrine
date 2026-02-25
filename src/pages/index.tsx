@@ -262,11 +262,11 @@ export default function Home() {
       <Head>
         <title>GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Construction, Rénovation, Aménagement en Île-de-France</title>
         <meta name="description" content="GH Bâtiment, entreprise générale du bâtiment et maîtrise d'œuvre tous corps d'état en Île-de-France. Construction, rénovation intérieure et extérieure, extension maison, ravalement de façade. Artisans qualifiés certifiés Qualibat, RGE. Devis gratuit." />
-        <link rel="canonical" href="https://www.ghbat.fr/" />
+        <link rel="canonical" href="https://ghbat.fr/" />
         <meta name="keywords" content="entreprise générale bâtiment, tous corps de métier, construction Île-de-France, rénovation intérieure, rénovation extérieure, maîtrise d'œuvre, extension maison, ravalement façade, maçonnerie, charpente, menuiserie, plomberie, électricité, carrelage, peinture, isolation, artisan qualifié, Qualibat, RGE, devis gratuit" />
         <meta property="og:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
         <meta property="og:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
-        <meta property="og:url" content="https://www.ghbat.fr/" />
+        <meta property="og:url" content="https://ghbat.fr/" />
         <meta name="twitter:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
         <meta name="twitter:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
       </Head>

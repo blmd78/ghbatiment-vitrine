@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://www.ghbat.fr/sitemap.xml
+Sitemap: https://ghbat.fr/sitemap.xml

@@ -73,10 +73,10 @@ export default function Contact() {
       <Head>
         <title>Contact | GH Bâtiment - Demandez votre devis gratuit</title>
         <meta name="description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
-        <link rel="canonical" href="https://www.ghbat.fr/contact" />
+        <link rel="canonical" href="https://ghbat.fr/contact" />
         <meta property="og:title" content="Contact | GH Bâtiment - Demandez votre devis gratuit" />
         <meta property="og:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
-        <meta property="og:url" content="https://www.ghbat.fr/contact" />
+        <meta property="og:url" content="https://ghbat.fr/contact" />
         <meta name="twitter:title" content="Contact | GH Bâtiment - Devis gratuit" />
         <meta name="twitter:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
       </Head>

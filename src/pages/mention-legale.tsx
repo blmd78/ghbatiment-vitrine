@@ -6,10 +6,10 @@ export default function MentionLegale() {
       <Head>
         <title>Mentions légales - GH Bâtiment</title>
         <meta name="description" content="Mentions légales du site GH Bâtiment, édité par Palatun. SIRET, hébergeur et informations juridiques." />
-        <link rel="canonical" href="https://www.ghbat.fr/mention-legale" />
+        <link rel="canonical" href="https://ghbat.fr/mention-legale" />
         <meta property="og:title" content="Mentions légales - GH Bâtiment" />
         <meta property="og:description" content="Mentions légales du site GH Bâtiment, édité par Palatun. SIRET, hébergeur et informations juridiques." />
-        <meta property="og:url" content="https://www.ghbat.fr/mention-legale" />
+        <meta property="og:url" content="https://ghbat.fr/mention-legale" />
         <meta name="twitter:title" content="Mentions légales - GH Bâtiment" />
         <meta name="twitter:description" content="Mentions légales du site GH Bâtiment, édité par Palatun." />
       </Head>
@@ -20,7 +20,7 @@ export default function MentionLegale() {
         <div className="prose prose-lg space-y-8">
           <section>
             <h2 className="mb-4 text-xl font-semibold">Éditeur du site</h2>
-            <p>Le site https://www.ghbat.fr est édité par :</p>
+            <p>Le site https://ghbat.fr est édité par :</p>
             <ul className="list-none space-y-1">
               <li>
                 <strong>Raison sociale :</strong> Palatun
