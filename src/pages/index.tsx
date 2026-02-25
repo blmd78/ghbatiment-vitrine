@@ -162,6 +162,8 @@ export default function Home() {
   const revealRefs = useRef<(HTMLElement | null)[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const isTouching = useRef(false);
   const [isEntering, setIsEntering] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -195,6 +197,38 @@ export default function Home() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedAlbum, closeAlbum]);
+
+  // Auto-scroll partenaires (compatible touch)
+  useEffect(() => {
+    const el = marqueeRef.current;
+    if (!el) return;
+    let animId: number;
+    const speed = 1; // px par frame
+
+    const scroll = () => {
+      if (!isTouching.current) {
+        el.scrollLeft += speed;
+        // Boucle infinie : quand on atteint la moitié, on revient au début
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      animId = requestAnimationFrame(scroll);
+    };
+
+    const onTouchStart = () => { isTouching.current = true; };
+    const onTouchEnd = () => { isTouching.current = false; };
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+    animId = requestAnimationFrame(scroll);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -453,7 +487,7 @@ export default function Home() {
             </div>
 
             {/* Image */}
-            <div ref={addToRefs} className="reveal-right relative">
+            <div ref={addToRefs} className="reveal-right relative px-8 pb-8">
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
@@ -478,7 +512,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section - Editorial Design */}
-      <section className="h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] py-6 lg:py-10 bg-[#f5f4f0] flex flex-col overflow-hidden">
+      <section className="py-6 lg:py-10 lg:h-[calc(100vh-5rem)] bg-[#f5f4f0] flex flex-col lg:overflow-hidden">
         <div className="px-4 lg:px-16 max-w-[1600px] mx-auto w-full flex-1 flex flex-col min-h-0">
           {/* Section header */}
           <div ref={addToRefs} className="reveal mb-6 lg:mb-8">
@@ -491,15 +525,15 @@ export default function Home() {
           </div>
 
           {/* Gallery Grid */}
-          <div className="flex-1 grid grid-cols-12 grid-rows-2 gap-3 lg:gap-4">
+          <div className="flex-1 grid grid-cols-2 lg:grid-cols-12 grid-rows-3 lg:grid-rows-2 gap-3 lg:gap-4">
             {/* Row 1 */}
             {/* Image 1 - Rectangle large */}
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[0])}
-              className="reveal group col-span-12 sm:col-span-6 lg:col-span-5 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[0].cover} alt={albums[0].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[0].title}</span>
@@ -511,9 +545,9 @@ export default function Home() {
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[1])}
-              className="reveal group col-span-6 sm:col-span-3 lg:col-span-3 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[1].cover} alt={albums[1].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[1].title}</span>
@@ -525,9 +559,9 @@ export default function Home() {
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[2])}
-              className="reveal group col-span-6 sm:col-span-3 lg:col-span-4 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[2].cover} alt={albums[2].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[2].title}</span>
@@ -540,9 +574,9 @@ export default function Home() {
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[3])}
-              className="reveal group col-span-6 sm:col-span-3 lg:col-span-4 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[3].cover} alt={albums[3].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[3].title}</span>
@@ -554,9 +588,9 @@ export default function Home() {
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[4])}
-              className="reveal group col-span-6 sm:col-span-3 lg:col-span-3 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[4].cover} alt={albums[4].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[4].title}</span>
@@ -568,9 +602,9 @@ export default function Home() {
             <button
               ref={addToRefs}
               onClick={() => openAlbum(albums[5])}
-              className="reveal group col-span-12 sm:col-span-6 lg:col-span-5 focus:outline-none cursor-pointer"
+              className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
                 <Image src={albums[5].cover} alt={albums[5].title} fill className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[5].title}</span>
@@ -672,9 +706,9 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Marquee */}
-          <div className="overflow-hidden py-8">
-            <div className="flex gap-16 animate-marquee">
+          {/* Auto-scroll + swipe tactile */}
+          <div ref={marqueeRef} className="overflow-x-auto py-8 scrollbar-hide">
+            <div className="flex gap-8 lg:gap-16">
               {[...partenaires, ...partenaires].map((partenaire, index) => (
                 <div
                   key={index}

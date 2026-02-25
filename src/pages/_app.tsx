@@ -3,10 +3,31 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { DM_Sans, Bebas_Neue } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  display: "swap",
+});
+
 const SITE_URL = "https://www.ghbat.fr";
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "GH Bâtiment",
+  url: SITE_URL,
+};
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -67,16 +88,23 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${SITE_URL}/images/Home2.jpeg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={`${SITE_URL}/images/Home2.jpeg`} />
 
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </Head>
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className={`${dmSans.variable} ${bebasNeue.variable} min-h-screen flex flex-col bg-background`}>
         <Navbar />
         <main className="flex-grow">
           <Component {...pageProps} />

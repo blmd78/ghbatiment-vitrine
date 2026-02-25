@@ -45,6 +45,18 @@ export default function Navbar() {
     };
   }, [router.events]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   // Calculate indicator position for desktop nav
   useEffect(() => {
     if (navRef.current) {
@@ -65,7 +77,7 @@ export default function Navbar() {
     <>
       {/* Construction line that appears on scroll */}
       <div
-        className={`fixed top-0 left-0 right-0 h-1 z-[60] transition-all duration-500 ease-out
+        className={`fixed top-0 left-0 right-0 h-1 z-60 transition-all duration-500 ease-out
           ${scrolled ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="h-full bg-gradient-to-r from-copper via-gold to-copper animate-shimmer"
@@ -78,7 +90,7 @@ export default function Navbar() {
           ${scrolled
             ? 'bg-concrete-950/98 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
             : isHomePage
-              ? 'bg-gradient-to-b from-concrete-950/80 to-transparent'
+              ? 'bg-concrete-950 lg:bg-transparent lg:bg-linear-to-b lg:from-concrete-950/80 lg:to-transparent'
               : 'bg-concrete-950/95 backdrop-blur-xl'
           }
           ${scrolled ? 'pt-1' : 'pt-0'}`}
@@ -160,130 +172,69 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile menu button - Architectural hamburger */}
-            <button
-              className="lg:hidden relative w-12 h-12 flex items-center justify-center group"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {/* Button frame */}
-              <div className="absolute inset-1 border border-concrete-700 group-hover:border-copper
-                transition-colors duration-300" />
-
-              <div className="relative w-6 h-5 flex flex-col justify-between">
-                <span
-                  className={`block h-0.5 bg-current text-white transition-all duration-300 origin-left
-                    ${isOpen ? 'rotate-45 w-[22px] translate-x-[3px]' : 'w-full'}`}
-                />
-                <span
-                  className={`block h-0.5 bg-current text-white transition-all duration-300
-                    ${isOpen ? 'opacity-0 translate-x-4' : 'w-4'}`}
-                />
-                <span
-                  className={`block h-0.5 bg-current text-white transition-all duration-300 origin-left
-                    ${isOpen ? '-rotate-45 w-[22px] translate-x-[3px]' : 'w-full'}`}
-                />
-              </div>
-            </button>
+            {/* Spacer for mobile button (keeps layout balanced) */}
+            <div className="lg:hidden w-10 h-10" />
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Navigation - Full screen overlay */}
-        <div
-          className={`lg:hidden fixed inset-0 top-0 bg-concrete-950 transition-all duration-500
-            ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
-          style={{ zIndex: -1 }}
-        >
-          {/* Decorative grid background */}
-          <div className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `
-                linear-gradient(90deg, white 1px, transparent 1px),
-                linear-gradient(white 1px, transparent 1px)
-              `,
-              backgroundSize: '50px 50px'
-            }}
+      {/* Mobile menu button - outside nav to avoid z-index stacking */}
+      <button
+        className="lg:hidden fixed right-4 top-5 z-60 w-10 h-10 flex items-center justify-center"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle menu"
+      >
+        <div className="relative w-6 h-5 flex flex-col justify-between">
+          <span
+            className={`block h-0.5 bg-white transition-all duration-300 origin-left
+              ${isOpen ? 'rotate-45 w-5.5 translate-x-0.75' : 'w-full'}`}
           />
+          <span
+            className={`block h-0.5 bg-white transition-all duration-300
+              ${isOpen ? 'opacity-0' : 'w-4'}`}
+          />
+          <span
+            className={`block h-0.5 bg-white transition-all duration-300 origin-left
+              ${isOpen ? '-rotate-45 w-5.5 translate-x-0.75' : 'w-full'}`}
+          />
+        </div>
+      </button>
 
-          {/* Copper accent corner */}
-          <div className="absolute top-0 right-0 w-32 h-32 border-r-4 border-t-4 border-copper/30" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 border-l-4 border-b-4 border-copper/30" />
-
-          <div className="flex flex-col justify-center h-full px-8 pt-20">
-            {navItems.map((item, index) => (
+      {/* Mobile Navigation - Full screen overlay */}
+      {isOpen && (
+        <div className="lg:hidden fixed inset-0 z-55 bg-concrete-950 flex flex-col items-center justify-center">
+          <nav className="flex flex-col items-center gap-6">
+            {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`group relative py-4 transition-all duration-500
-                  ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}
-                style={{ transitionDelay: isOpen ? `${index * 80}ms` : '0ms' }}
+                className={`text-2xl font-display uppercase tracking-wider
+                  ${router.pathname === item.href ? 'text-copper' : 'text-white'}`}
               >
-                {/* Number */}
-                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-6xl font-display
-                  text-concrete-800 group-hover:text-copper/30 transition-colors duration-300">
-                  0{index + 1}
-                </span>
-
-                <span className={`relative z-10 pl-16 text-3xl font-display tracking-wide
-                  transition-colors duration-300
-                  ${router.pathname === item.href
-                    ? 'text-copper'
-                    : 'text-white group-hover:text-copper-light'}`}>
-                  {item.label}
-                </span>
-
-                {/* Active line indicator */}
-                {router.pathname === item.href && (
-                  <span className="absolute left-16 bottom-2 w-12 h-0.5 bg-copper" />
-                )}
+                {item.label}
               </Link>
             ))}
 
-            {/* Mobile CTA */}
-            <div
-              className={`mt-12 pt-8 border-t border-concrete-800 transition-all duration-500
-                ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
-              style={{ transitionDelay: isOpen ? '400ms' : '0ms' }}
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-6 px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider"
             >
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="group relative inline-flex items-center gap-4"
-              >
-                <span className="relative px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider
-                  group-hover:bg-white group-hover:text-concrete-900 transition-colors duration-300">
-                  Demander un devis
-                </span>
-                <svg
-                  className="w-6 h-6 text-copper group-hover:translate-x-2 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              Demander un devis
+            </Link>
 
-              {/* Contact info */}
-              <div className="mt-8 space-y-2">
-                <a
-                  href="tel:0980336060"
-                  className="block text-concrete-400 hover:text-copper transition-colors"
-                >
-                  09 80 33 60 60
-                </a>
-                <a
-                  href="mailto:contact.ghbat@gmail.com"
-                  className="block text-concrete-500 hover:text-copper transition-colors text-sm"
-                >
-                  contact.ghbat@gmail.com
-                </a>
-              </div>
+            <div className="mt-8 flex flex-col items-center gap-2">
+              <a href="tel:0980336060" className="text-concrete-400">
+                09 80 33 60 60
+              </a>
+              <a href="mailto:contact.ghbat@gmail.com" className="text-concrete-500 text-sm">
+                contact.ghbat@gmail.com
+              </a>
             </div>
-          </div>
+          </nav>
         </div>
-      </nav>
+      )}
     </>
   );
 }

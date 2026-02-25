@@ -5,6 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
+    {label: 'Accueil', href: '/'},
     {label: 'Contact', href: '/contact'},
   ];
 
@@ -45,13 +46,6 @@ export default function Footer() {
                   href="/mention-legale"
                   className="text-sm text-concrete-400 transition-colors hover:text-copper">
                   Mentions légales
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/politique"
-                  className="text-sm text-concrete-400 transition-colors hover:text-copper">
-                  Politique de confidentialité
                 </Link>
               </li>
             </ul>
