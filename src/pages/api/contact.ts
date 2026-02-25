@@ -3,37 +3,33 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-type ContactBody = {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-  turnstileToken: string;
-};
+function escapeHtml(s: string): string {
+  return s
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
 
-type ApiResponse = {
-  success: boolean;
-  message: string;
-};
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+function str(value: unknown, maxLength: number): string {
+  return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
 }
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ApiResponse>,
+  res: NextApiResponse<{ success: boolean; message: string }>,
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Méthode non autorisée' });
   }
 
-  const { name, email, phone, subject, message, turnstileToken } = req.body as ContactBody;
+  const { body } = req;
+  const name = str(body.name, 200);
+  const email = str(body.email, 200);
+  const phone = str(body.phone, 30);
+  const subject = str(body.subject, 200);
+  const message = str(body.message, 5000);
+  const turnstileToken = str(body.turnstileToken, 2000);
 
   // Validation des champs requis
   if (!name || !email || !message) {
