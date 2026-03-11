@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod/v4';
 
@@ -26,7 +26,7 @@ function getRecentHits(map: Map<string, number[]>, key: string, now: number): nu
 function isIpRateLimited(ip: string): boolean {
   const now = Date.now();
   const recent = getRecentHits(ipHits, ip, now);
-  if (recent.length >= MAX_PER_IP) return true;
+  if (recent.length >= MAX_PER_IP) { return true; }
   recent.push(now);
   return false;
 }
@@ -35,7 +35,7 @@ function isEmailRateLimited(email: string): boolean {
   const now = Date.now();
   const key = email.toLowerCase();
   const recent = getRecentHits(emailHits, key, now);
-  if (recent.length >= MAX_PER_EMAIL) return true;
+  if (recent.length >= MAX_PER_EMAIL) { return true; }
   recent.push(now);
   return false;
 }
@@ -46,16 +46,16 @@ if (typeof globalThis.setInterval === 'function') {
     const now = Date.now();
     for (const [key, timestamps] of ipHits) {
       const recent = timestamps.filter((t) => now - t < WINDOW_MS);
-      if (recent.length === 0) ipHits.delete(key);
-      else ipHits.set(key, recent);
+      if (recent.length === 0) { ipHits.delete(key); }
+      else { ipHits.set(key, recent); }
     }
     for (const [key, timestamps] of emailHits) {
       const recent = timestamps.filter((t) => now - t < WINDOW_MS);
-      if (recent.length === 0) emailHits.delete(key);
-      else emailHits.set(key, recent);
+      if (recent.length === 0) { emailHits.delete(key); }
+      else { emailHits.set(key, recent); }
     }
   }, 10 * 60 * 1000);
-  if (typeof timer === 'object' && 'unref' in timer) timer.unref();
+  if (typeof timer === 'object' && 'unref' in timer) { (timer as NodeJS.Timeout).unref(); }
 }
 
 // ─── Validation ──────────────────────────────────────────────────────────────
@@ -77,12 +77,12 @@ function escapeHtml(s: string): string {
     .replaceAll('"', '&quot;');
 }
 
-function getClientIp(req: NextApiRequest): string {
-  const forwarded = req.headers['x-forwarded-for'];
-  if (typeof forwarded === 'string') {
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
-  return req.socket.remoteAddress ?? 'unknown';
+  return 'unknown';
 }
 
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
@@ -225,33 +225,36 @@ function buildConfirmationEmailHtml(data: {
 }
 
 // ─── Handler ─────────────────────────────────────────────────────────────────
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<{ success: boolean; message: string }>,
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Méthode non autorisée' });
-  }
-
-  const ip = getClientIp(req);
+export async function POST(request: Request) {
+  const ip = getClientIp(request);
 
   // Rate limit par IP
   if (isIpRateLimited(ip)) {
-    return res.status(429).json({
-      success: false,
-      message: 'Trop de messages envoyés. Réessayez dans quelques minutes.',
-    });
+    return NextResponse.json(
+      { success: false, message: 'Trop de messages envoyés. Réessayez dans quelques minutes.' },
+      { status: 429 },
+    );
   }
 
   // Validation Zod
-  const result = contactSchema.safeParse(req.body);
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { success: false, message: 'Données invalides' },
+      { status: 400 },
+    );
+  }
+
+  const result = contactSchema.safeParse(body);
 
   if (!result.success) {
     console.error('Validation errors:', JSON.stringify(result.error.issues, null, 2));
-    return res.status(400).json({
-      success: false,
-      message: 'Données invalides',
-    });
+    return NextResponse.json(
+      { success: false, message: 'Données invalides' },
+      { status: 400 },
+    );
   }
 
   const data = result.data;
@@ -262,10 +265,10 @@ export default async function handler(
   // Vérification Turnstile
   const turnstileValid = await verifyTurnstile(data.turnstileToken, ip);
   if (!turnstileValid) {
-    return res.status(403).json({
-      success: false,
-      message: 'Vérification de sécurité échouée. Veuillez réessayer.',
-    });
+    return NextResponse.json(
+      { success: false, message: 'Vérification de sécurité échouée. Veuillez réessayer.' },
+      { status: 403 },
+    );
   }
 
   // Envoi emails
@@ -300,15 +303,18 @@ export default async function handler(
 
     if (hasError) {
       console.error('Resend error:', results.map((r) => r.error).filter(Boolean));
-      return res.status(500).json({
-        success: false,
-        message: "Erreur lors de l'envoi. Veuillez réessayer.",
-      });
+      return NextResponse.json(
+        { success: false, message: "Erreur lors de l'envoi. Veuillez réessayer." },
+        { status: 500 },
+      );
     }
 
-    return res.status(200).json({ success: true, message: 'Message envoyé avec succès' });
+    return NextResponse.json({ success: true, message: 'Message envoyé avec succès' });
   } catch (error) {
     console.error('Erreur envoi contact:', error);
-    return res.status(500).json({ success: false, message: 'Erreur serveur' });
+    return NextResponse.json(
+      { success: false, message: 'Erreur serveur' },
+      { status: 500 },
+    );
   }
 }

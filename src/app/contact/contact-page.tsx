@@ -1,11 +1,12 @@
-import Head from 'next/head';
+'use client';
+
 import Image from 'next/image';
 import { useState } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 
-import chantierImg from '../../public/images/Savoir-faire/chantier.jpeg';
+import chantierImg from '../../../public/images/Savoir-faire/chantier.jpeg';
 
-export default function Contact() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,17 +71,6 @@ export default function Contact() {
 
   return (
     <>
-      <Head>
-        <title>Contact | GH Bâtiment - Demandez votre devis gratuit</title>
-        <meta name="description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
-        <link rel="canonical" href="https://ghbat.fr/contact" />
-        <meta property="og:title" content="Contact | GH Bâtiment - Demandez votre devis gratuit" />
-        <meta property="og:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
-        <meta property="og:url" content="https://ghbat.fr/contact" />
-        <meta name="twitter:title" content="Contact | GH Bâtiment - Devis gratuit" />
-        <meta name="twitter:description" content="Contactez GH Bâtiment pour vos projets de construction et rénovation en Île-de-France. Devis gratuit sous 48h." />
-      </Head>
-
       {/* Hero - Split Design */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-concrete-950">
         {/* Background Image - Right Side */}

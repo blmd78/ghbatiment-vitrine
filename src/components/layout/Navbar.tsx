@@ -1,7 +1,9 @@
+'use client';
+
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 import logoImg from '../../../public/images/LogoGH.webp';
 
@@ -16,13 +18,13 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const navRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+  const pathname = usePathname();
 
   // Derive active index from pathname (no state needed)
   const activeIndex = useMemo(() => {
-    const index = navItems.findIndex(item => item.href === router.pathname);
+    const index = navItems.findIndex(item => item.href === pathname);
     return index !== -1 ? index : 0;
-  }, [router.pathname]);
+  }, [pathname]);
 
   // The displayed index is either hovered or active
   const displayedIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
@@ -36,16 +38,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change via router events
+  // Close mobile menu on route change
   useEffect(() => {
-    const handleRouteChange = () => {
-      setIsOpen(false);
-    };
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router.events]);
+    setIsOpen(false);
+  }, [pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -73,7 +69,7 @@ export default function Navbar() {
     }
   }, [displayedIndex]);
 
-  const isHomePage = router.pathname === '/';
+  const isHomePage = pathname === '/';
 
   return (
     <>
@@ -136,7 +132,7 @@ export default function Navbar() {
                     onMouseLeave={() => setHoveredIndex(null)}
                     className={`relative px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.15em]
                       transition-colors duration-200
-                      ${router.pathname === item.href
+                      ${pathname === item.href
                         ? 'text-copper'
                         : 'text-concrete-300 hover:text-white'
                       }`}
@@ -242,7 +238,7 @@ export default function Navbar() {
                   ${isOpen
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 -translate-y-6'}
-                  ${router.pathname === item.href ? 'text-copper' : 'text-white'}`}
+                  ${pathname === item.href ? 'text-copper' : 'text-white'}`}
                 style={{
                   transitionDuration: '500ms',
                   transitionDelay: isOpen ? `${250 + index * 100}ms` : '0ms',

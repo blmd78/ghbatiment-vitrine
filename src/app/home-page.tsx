@@ -1,6 +1,7 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCreative, Keyboard } from 'swiper/modules';
@@ -191,7 +192,7 @@ const albums = [
 // Type pour un album
 type Album = typeof albums[number];
 
-export default function Home() {
+export default function HomePage() {
   const revealRefs = useRef<(HTMLElement | null)[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -258,18 +259,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Construction, Rénovation, Aménagement en Île-de-France</title>
-        <meta name="description" content="GH Bâtiment, entreprise générale du bâtiment et maîtrise d'œuvre tous corps d'état en Île-de-France. Construction, rénovation intérieure et extérieure, extension maison, ravalement de façade. Artisans qualifiés certifiés Qualibat, RGE. Devis gratuit." />
-        <link rel="canonical" href="https://ghbat.fr/" />
-        <meta name="keywords" content="entreprise générale bâtiment, tous corps de métier, construction Île-de-France, rénovation intérieure, rénovation extérieure, maîtrise d'œuvre, extension maison, ravalement façade, maçonnerie, charpente, menuiserie, plomberie, électricité, carrelage, peinture, isolation, artisan qualifié, Qualibat, RGE, devis gratuit" />
-        <meta property="og:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
-        <meta property="og:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
-        <meta property="og:url" content="https://ghbat.fr/" />
-        <meta name="twitter:title" content="GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Île-de-France" />
-        <meta name="twitter:description" content="Construction, rénovation et aménagement tous corps d'état en Île-de-France. Maîtrise d'œuvre, artisans qualifiés certifiés Qualibat et RGE. Devis gratuit." />
-      </Head>
-
       {/* Hero Section - Full-bleed Cinematic */}
       <section className="relative min-h-[85vh] overflow-hidden" aria-label="Présentation GH Bâtiment entreprise générale du bâtiment en Île-de-France">
         {/* Full-bleed background image */}
