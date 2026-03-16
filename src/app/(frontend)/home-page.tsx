@@ -12,22 +12,22 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 
 // Images — Hero & Sections
-import heroImg from '../../../public/images/Home2.jpeg';
-import renovationImg from '../../../public/images/Savoir-faire/renovation.jpeg';
-import bandeauImg from '../../../public/images/Savoir-faire/bandeau.jpg';
+import heroImg from '../../../public/images/Home2.webp';
+import renovationImg from '../../../public/images/Savoir-faire/renovation.webp';
+import bandeauImg from '../../../public/images/Savoir-faire/bandeau.webp';
 
 // Images — Partenaires
-import cedeoImg from '../../../public/images/Partenaire/cedeo.png';
-import pointPImg from '../../../public/images/Partenaire/pointP.png';
-import carrelageRogerImg from '../../../public/images/Partenaire/carrelageRoger.png';
-import kdiImg from '../../../public/images/Partenaire/kdi.png';
-import chossiereImg from '../../../public/images/Partenaire/chossiere.png';
-import raboniImg from '../../../public/images/Partenaire/raboni.png';
-import nolletImg from '../../../public/images/Partenaire/nollet.png';
-import laPaletteImg from '../../../public/images/Partenaire/lapalette.jpeg';
-import cogefermImg from '../../../public/images/Partenaire/cogeferm.png';
-import lossignolImg from '../../../public/images/Partenaire/lossignol.jpeg';
-import petruzellaImg from '../../../public/images/Partenaire/petruzella.jpeg';
+import cedeoImg from '../../../public/images/Partenaire/cedeo.webp';
+import pointPImg from '../../../public/images/Partenaire/pointP.webp';
+import carrelageRogerImg from '../../../public/images/Partenaire/carrelageRoger.webp';
+import kdiImg from '../../../public/images/Partenaire/kdi.webp';
+import chossiereImg from '../../../public/images/Partenaire/chossiere.webp';
+import raboniImg from '../../../public/images/Partenaire/raboni.webp';
+import nolletImg from '../../../public/images/Partenaire/nollet.webp';
+import laPaletteImg from '../../../public/images/Partenaire/lapalette.webp';
+import cogefermImg from '../../../public/images/Partenaire/cogeferm.webp';
+import lossignolImg from '../../../public/images/Partenaire/lossignol.webp';
+import petruzellaImg from '../../../public/images/Partenaire/petruzella.webp';
 
 // Liste des partenaires
 const partenaires = [

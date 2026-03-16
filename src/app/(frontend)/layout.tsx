@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/Home2.jpeg',
+        url: '/images/Home2.webp',
         width: 1200,
         height: 630,
-        type: 'image/jpeg',
+        type: 'image/webp',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/Home2.jpeg'],
+    images: ['/images/Home2.webp'],
   },
   icons: {
     icon: '/favicon.ico',
@@ -58,7 +58,7 @@ const localBusinessJsonLd = {
   name: 'GH Bâtiment',
   url: SITE_URL,
   logo: `${SITE_URL}/images/LogoGH.webp`,
-  image: `${SITE_URL}/images/Home2.jpeg`,
+  image: `${SITE_URL}/images/Home2.webp`,
   description:
     'Entreprise générale du bâtiment tous corps de métier en Île-de-France. Construction, rénovation, aménagement depuis 2018.',
   telephone: '+33980336060',

@@ -14,6 +14,16 @@ export const Media: CollectionConfig = {
   },
   upload: {
     mimeTypes: ['image/*'],
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 80,
+      },
+    },
+    resizeOptions: {
+      width: 1920,
+      withoutEnlargement: true,
+    },
     imageSizes: [
       {
         name: 'thumbnail',
