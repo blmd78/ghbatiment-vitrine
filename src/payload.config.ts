@@ -33,7 +33,7 @@ if (process.env.S3_BUCKET) {
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
         },
         region: process.env.S3_REGION || 'auto',
-        endpoint: process.env.S3_ENDPOINT || '',
+        endpoint: process.env.S3_URL || '',
         forcePathStyle: true,
       },
     }),
