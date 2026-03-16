@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 
-import chantierImg from '../../../public/images/Savoir-faire/chantier.jpeg';
+import chantierImg from '../../../../public/images/Savoir-faire/chantier.jpeg';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

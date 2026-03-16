@@ -26,7 +26,7 @@ export default function MentionLegalePage() {
     <div className="mx-auto max-w-2xl px-6 pt-40 pb-20">
       <h1 className="mb-12 text-center text-5xl">Mentions légales</h1>
 
-      <div className="prose prose-lg space-y-8">
+      <div className="space-y-8">
         <section>
           <h2 className="mb-4 text-xl font-semibold">Éditeur du site</h2>
           <p>Le site https://ghbat.fr est édité par :</p>

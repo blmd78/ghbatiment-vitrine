@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { RefreshRouteOnSave } from '@payloadcms/live-preview-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCreative, Keyboard } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
@@ -10,106 +12,22 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 
 // Images — Hero & Sections
-import heroImg from '../../public/images/Home2.jpeg';
-import renovationImg from '../../public/images/Savoir-faire/renovation.jpeg';
-import bandeauImg from '../../public/images/Savoir-faire/bandeau.jpg';
+import heroImg from '../../../public/images/Home2.jpeg';
+import renovationImg from '../../../public/images/Savoir-faire/renovation.jpeg';
+import bandeauImg from '../../../public/images/Savoir-faire/bandeau.jpg';
 
 // Images — Partenaires
-import cedeoImg from '../../public/images/Partenaire/cedeo.png';
-import pointPImg from '../../public/images/Partenaire/pointP.png';
-import carrelageRogerImg from '../../public/images/Partenaire/carrelageRoger.png';
-import kdiImg from '../../public/images/Partenaire/kdi.png';
-import chossiereImg from '../../public/images/Partenaire/chossiere.png';
-import raboniImg from '../../public/images/Partenaire/raboni.png';
-import nolletImg from '../../public/images/Partenaire/nollet.png';
-import laPaletteImg from '../../public/images/Partenaire/lapalette.jpeg';
-import cogefermImg from '../../public/images/Partenaire/cogeferm.png';
-import lossignolImg from '../../public/images/Partenaire/lossignol.jpeg';
-import petruzellaImg from '../../public/images/Partenaire/petruzella.jpeg';
-
-// Images — Album: Théâtre de Rungis
-import rungis1 from '../../public/images/RealisationChantier/HallRungis/1.webp';
-import rungis2 from '../../public/images/RealisationChantier/HallRungis/2.webp';
-import rungis3 from '../../public/images/RealisationChantier/HallRungis/3.webp';
-import rungis4 from '../../public/images/RealisationChantier/HallRungis/4.webp';
-import rungis5 from '../../public/images/RealisationChantier/HallRungis/5.webp';
-import rungis6 from '../../public/images/RealisationChantier/HallRungis/6.webp';
-import rungis7 from '../../public/images/RealisationChantier/HallRungis/7.webp';
-import rungis8 from '../../public/images/RealisationChantier/HallRungis/8.webp';
-import rungis9 from '../../public/images/RealisationChantier/HallRungis/9.webp';
-
-// Images — Album: Terrasse & Pergola
-import pergola1 from '../../public/images/RealisationChantier/Pergola/IMG_1675_1.jpeg';
-import pergola2 from '../../public/images/RealisationChantier/Pergola/IMG_1965.jpeg';
-import pergola3 from '../../public/images/RealisationChantier/Pergola/IMG_1966.jpeg';
-import pergola4 from '../../public/images/RealisationChantier/Pergola/IMG_6041.jpeg';
-import pergola5 from '../../public/images/RealisationChantier/Pergola/IMG_7157.jpg';
-import pergola6 from '../../public/images/RealisationChantier/Pergola/IMG_7158.jpg';
-import pergola7 from '../../public/images/RealisationChantier/Pergola/IMG_7159.jpg';
-import pergola8 from '../../public/images/RealisationChantier/Pergola/IMG_7160.jpg';
-
-// Images — Album: Salle de bain
-import sdb1 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4839.jpg';
-import sdb2 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4840.jpg';
-import sdb3 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4841.jpg';
-import sdb4 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4842.jpg';
-import sdb5 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4843.jpg';
-import sdb6 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4844.jpg';
-import sdb7 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4845.jpg';
-import sdb8 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4846.jpg';
-import sdb9 from '../../public/images/RealisationChantier/SalleDeBain/IMG_4847.jpg';
-
-// Images — Album: Ravalement
-import ravalement1 from '../../public/images/RealisationChantier/Ravalement/IMG_1433.jpeg';
-import ravalement2 from '../../public/images/RealisationChantier/Ravalement/IMG_1712.jpg';
-import ravalement3 from '../../public/images/RealisationChantier/Ravalement/IMG_1713.jpg';
-import ravalement4 from '../../public/images/RealisationChantier/Ravalement/IMG_1714.jpg';
-import ravalement5 from '../../public/images/RealisationChantier/Ravalement/Ravalement.jpg';
-
-// Images — Album: Isolation
-import isolation1 from '../../public/images/RealisationChantier/Isolation/IMG_2726.jpg';
-import isolation2 from '../../public/images/RealisationChantier/Isolation/IMG_2748.jpg';
-import isolation3 from '../../public/images/RealisationChantier/Isolation/IMG_2765.jpg';
-import isolation4 from '../../public/images/RealisationChantier/Isolation/IMG_2766.jpg';
-import isolation5 from '../../public/images/RealisationChantier/Isolation/IMG_2767.jpg';
-import isolation6 from '../../public/images/RealisationChantier/Isolation/IMG_2768.jpg';
-import isolation7 from '../../public/images/RealisationChantier/Isolation/IMG_2769.jpg';
-import isolation8 from '../../public/images/RealisationChantier/Isolation/IMG_2784.jpg';
-import isolation9 from '../../public/images/RealisationChantier/Isolation/IMG_2785.jpg';
-import isolation10 from '../../public/images/RealisationChantier/Isolation/IMG_2786.jpg';
-import isolation11 from '../../public/images/RealisationChantier/Isolation/IMG_2787.jpg';
-import isolation12 from '../../public/images/RealisationChantier/Isolation/IMG_2788.jpg';
-import isolation13 from '../../public/images/RealisationChantier/Isolation/IMG_2798.jpg';
-import isolation14 from '../../public/images/RealisationChantier/Isolation/IMG_2799.jpg';
-import isolation15 from '../../public/images/RealisationChantier/Isolation/IMG_WA01.jpeg';
-import isolation16 from '../../public/images/RealisationChantier/Isolation/IMG_WA02.jpeg';
-
-// Images — Album: Agrandissement
-import agrandissement1 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA01.jpeg';
-import agrandissement2 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA02.jpeg';
-import agrandissement3 from '../../public/images/RealisationChantier/Agrandissement/IMG_14921.jpg';
-import agrandissement4 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA03.jpeg';
-import agrandissement5 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA04.jpeg';
-import agrandissement6 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA05.jpeg';
-import agrandissement7 from '../../public/images/RealisationChantier/Agrandissement/IMG_1609.jpg';
-import agrandissement8 from '../../public/images/RealisationChantier/Agrandissement/IMG_1610.jpg';
-import agrandissement9 from '../../public/images/RealisationChantier/Agrandissement/IMG_8236.jpg';
-import agrandissement10 from '../../public/images/RealisationChantier/Agrandissement/IMG_8237.jpg';
-import agrandissement11 from '../../public/images/RealisationChantier/Agrandissement/IMG_8241.jpg';
-import agrandissement12 from '../../public/images/RealisationChantier/Agrandissement/IMG_9066.jpeg';
-import agrandissement13 from '../../public/images/RealisationChantier/Agrandissement/IMG_9068.jpeg';
-import agrandissement14 from '../../public/images/RealisationChantier/Agrandissement/IMG_9170.jpeg';
-import agrandissement15 from '../../public/images/RealisationChantier/Agrandissement/image_67215873.jpg';
-import agrandissement16 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA06.jpeg';
-import agrandissement17 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA07.jpeg';
-import agrandissement18 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA08.jpeg';
-import agrandissement19 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA09.jpeg';
-import agrandissement20 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA10.jpeg';
-import agrandissement21 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA11.jpeg';
-import agrandissement22 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA12.jpeg';
-import agrandissement23 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA13.jpeg';
-import agrandissement24 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA14.jpeg';
-import agrandissement25 from '../../public/images/RealisationChantier/Agrandissement/IMG_WA15.jpeg';
+import cedeoImg from '../../../public/images/Partenaire/cedeo.png';
+import pointPImg from '../../../public/images/Partenaire/pointP.png';
+import carrelageRogerImg from '../../../public/images/Partenaire/carrelageRoger.png';
+import kdiImg from '../../../public/images/Partenaire/kdi.png';
+import chossiereImg from '../../../public/images/Partenaire/chossiere.png';
+import raboniImg from '../../../public/images/Partenaire/raboni.png';
+import nolletImg from '../../../public/images/Partenaire/nollet.png';
+import laPaletteImg from '../../../public/images/Partenaire/lapalette.jpeg';
+import cogefermImg from '../../../public/images/Partenaire/cogeferm.png';
+import lossignolImg from '../../../public/images/Partenaire/lossignol.jpeg';
+import petruzellaImg from '../../../public/images/Partenaire/petruzella.jpeg';
 
 // Liste des partenaires
 const partenaires = [
@@ -126,82 +44,73 @@ const partenaires = [
   { src: petruzellaImg, alt: 'Petruzella', width: 100 },
 ];
 
-// Chiffres clés
-const chiffres = [
-  { value: '700K', label: "Chiffre d'affaires", suffix: '€' },
-  { value: '70', label: 'Chantiers réalisés', suffix: '+' },
-  { value: '98', label: 'Clients satisfaits', suffix: '%' },
-];
+type MediaObject = { id: string; url: string; width?: number; height?: number; alt?: string };
 
-// Albums de réalisations avec toutes les photos
-const albums = [
-  {
-    id: 'theatre-rungis',
-    title: 'Théâtre de Rungis',
-    category: 'Rénovation complète',
-    cover: rungis9,
-    images: [rungis1, rungis2, rungis3, rungis4, rungis5, rungis6, rungis7, rungis8, rungis9],
-  },
-  {
-    id: 'pergola',
-    title: 'Terrasse & Pergola',
-    category: 'Aménagement extérieur',
-    cover: pergola8,
-    images: [pergola1, pergola2, pergola3, pergola4, pergola5, pergola6, pergola7, pergola8],
-  },
-  {
-    id: 'salle-de-bain',
-    title: 'Salle de bain',
-    category: 'Rénovation',
-    cover: sdb9,
-    images: [sdb1, sdb2, sdb3, sdb4, sdb5, sdb6, sdb7, sdb8, sdb9],
-  },
-  {
-    id: 'ravalement',
-    title: 'Ravalement de façade',
-    category: 'Rénovation extérieure',
-    cover: ravalement5,
-    images: [ravalement1, ravalement2, ravalement3, ravalement4, ravalement5],
-  },
-  {
-    id: 'isolation',
-    title: 'Isolation par l\'extérieur',
-    category: 'Isolation thermique',
-    cover: isolation13,
-    images: [
-      isolation1, isolation2, isolation3, isolation4, isolation5, isolation6,
-      isolation7, isolation8, isolation9, isolation10, isolation11, isolation12,
-      isolation13, isolation14, isolation15, isolation16,
-    ],
-  },
-  {
-    id: 'agrandissement',
-    title: 'Agrandissement',
-    category: 'Construction & Extension',
-    cover: agrandissement16,
-    images: [
-      agrandissement1, agrandissement2, agrandissement3, agrandissement4, agrandissement5,
-      agrandissement6, agrandissement7, agrandissement8, agrandissement9, agrandissement10,
-      agrandissement11, agrandissement12, agrandissement13, agrandissement14, agrandissement15,
-      agrandissement16, agrandissement17, agrandissement18, agrandissement19, agrandissement20,
-      agrandissement21, agrandissement22, agrandissement23, agrandissement24, agrandissement25,
-    ],
-  },
-];
+type EngagementItem = {
+  id?: string;
+  title: string;
+  description: string;
+  icon: 'shield' | 'team' | 'checklist' | 'star' | 'clock' | 'thumbup';
+};
 
-// Type pour un album
-type Album = typeof albums[number];
+type EngagementsSectionData = {
+  label?: string;
+  title?: string;
+  titleHighlight?: string;
+  image?: MediaObject | null;
+  imageOverlayValue?: string;
+  imageOverlayLabel?: string;
+  engagements?: EngagementItem[];
+  stats?: Array<{ value: string; suffix?: string; label: string; id?: string }>;
+};
 
-export default function HomePage() {
+type PayloadMedia = { url?: string | null; alt?: string | null };
+type PayloadAlbum = { id?: string | null; title: string; images?: (string | PayloadMedia)[] | null };
+type GalerieSection = { albums?: PayloadAlbum[] | null };
+type DisplayAlbum = { id: string; title: string; cover: string; images: string[] };
+
+const ICON_PATHS: Record<string, string> = {
+  shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  team: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+  checklist: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  star: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
+  clock: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+  thumbup: 'M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5',
+};
+
+type HomePageProps = {
+  engagementsSection: EngagementsSectionData;
+  galerieSection?: GalerieSection | null;
+};
+
+export default function HomePage({ engagementsSection, galerieSection }: HomePageProps) {
+  const router = useRouter();
+
   const revealRefs = useRef<(HTMLElement | null)[]>([]);
-  const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
+  const intersectionObserverRef = useRef<IntersectionObserver | null>(null);
+  const [selectedAlbum, setSelectedAlbum] = useState<DisplayAlbum | null>(null);
+
+  const COL_SPANS = ['lg:col-span-5', 'lg:col-span-3', 'lg:col-span-4', 'lg:col-span-4', 'lg:col-span-3', 'lg:col-span-5'];
+  const payloadAlbums = galerieSection?.albums;
+  const normalizeUrl = (url: string) => {
+    if (!url) return '';
+    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(url)) return url.replace(/^https?:\/\/[^/]+/, '');
+    return url;
+  };
+  const displayAlbums: DisplayAlbum[] = (payloadAlbums || []).map((album: PayloadAlbum, i: number) => {
+    const imgs = (album.images || []).map((img: string | PayloadMedia) => {
+      const raw = typeof img === 'object' && img !== null && 'url' in img ? (img.url || '') : String(img);
+      return normalizeUrl(raw);
+    });
+    return { id: album.id || String(i), title: album.title, cover: imgs[0] || '', images: imgs };
+  });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [isEntering, setIsEntering] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const openAlbum = useCallback((album: Album) => {
+  const openAlbum = useCallback((album: DisplayAlbum) => {
     setSelectedAlbum(album);
     setCurrentImageIndex(0);
     setIsEntering(true);
@@ -244,29 +153,40 @@ export default function HomePage() {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
+    intersectionObserverRef.current = observer;
+
     revealRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      intersectionObserverRef.current = null;
+    };
   }, []);
 
   const addToRefs = (el: HTMLElement | null) => {
     if (el && !revealRefs.current.includes(el)) {
       revealRefs.current.push(el);
+      intersectionObserverRef.current?.observe(el);
     }
   };
 
   return (
     <>
+      <RefreshRouteOnSave
+        refresh={router.refresh}
+        serverURL={process.env.NEXT_PUBLIC_ADMIN_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}
+      />
       {/* Hero Section - Full-bleed Cinematic */}
-      <section className="relative min-h-[85vh] overflow-hidden" aria-label="Présentation GH Bâtiment entreprise générale du bâtiment en Île-de-France">
+      <section className="relative min-h-[85vh] overflow-hidden" aria-label="Présentation GH Bâtiment entreprise générale du bâtiment en ��le-de-France">
         {/* Full-bleed background image */}
         <div className="absolute inset-0">
           <Image
             src={heroImg}
             alt="GH Bâtiment - Entreprise générale du bâtiment tous corps de métier, chantier de construction et rénovation en Île-de-France"
             fill
+            sizes="100vw"
             placeholder="blur"
             className="object-cover hero-img-zoom"
             priority
@@ -482,98 +402,87 @@ export default function HomePage() {
       </section>
 
       {/* Nos Engagements Section */}
-      <section className="py-24 lg:py-32 bg-white overflow-hidden">
+      <section id="engagements" className="py-24 lg:py-32 bg-white overflow-hidden">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Content */}
             <div ref={addToRefs} className="reveal">
               <span className="text-copper text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
-                Nos engagements
+                {engagementsSection.label ?? 'Nos engagements'}
               </span>
               <h2 className="font-display text-4xl md:text-5xl text-concrete-900 tracking-tight mb-8">
-                La qualité comme<br />
-                <span className="text-copper">signature</span>
+                {engagementsSection.title ?? 'La qualité comme'}<br />
+                <span className="text-copper">{engagementsSection.titleHighlight ?? 'signature'}</span>
               </h2>
 
               <div className="space-y-8">
-                <div className="flex gap-6">
-                  <div className="w-12 h-12 bg-copper/10 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-concrete-900 mb-2">Certifications reconnues</h3>
-                    <p className="text-concrete-500">
-                      Qualibat, RGE, Handibat, Qualifelec : nos certifications attestent de notre professionnalisme et de notre engagement qualité.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-6">
-                  <div className="w-12 h-12 bg-copper/10 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-concrete-900 mb-2">Équipes qualifiées</h3>
-                    <p className="text-concrete-500">
-                      Des artisans expérimentés et formés dans chaque domaine pour un travail impeccable sur tous vos chantiers.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-6">
-                  <div className="w-12 h-12 bg-copper/10 flex items-center justify-center shrink-0">
-                    <svg className="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-concrete-900 mb-2">Suivi personnalisé</h3>
-                    <p className="text-concrete-500">
-                      Un interlocuteur unique et un reporting régulier pour une transparence totale sur l&apos;avancement de vos travaux.
-                    </p>
-                  </div>
-                </div>
+                {(engagementsSection.engagements ?? []).map((item: EngagementItem) => {
+                  const iconPath = ICON_PATHS[item.icon] ?? ICON_PATHS.shield;
+                  return (
+                    <div key={item.id} className="flex gap-6">
+                      <div className="w-12 h-12 bg-copper/10 flex items-center justify-center shrink-0">
+                        <svg className="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconPath} />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl text-concrete-900 mb-2">{item.title}</h3>
+                        <p className="text-concrete-500">{item.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Chiffres clés */}
-              <div className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-concrete-200">
-                {chiffres.map((chiffre, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl font-display text-copper">
-                      {chiffre.value}{chiffre.suffix}
+              {engagementsSection.stats && engagementsSection.stats.length > 0 && (
+                <div className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-concrete-200">
+                  {engagementsSection.stats.map((stat, index) => (
+                    <div key={stat.id ?? index} className="text-center">
+                      <div className="text-3xl font-display text-copper">
+                        {stat.value}{stat.suffix}
+                      </div>
+                      <div className="text-xs text-concrete-500 uppercase tracking-wider mt-1">{stat.label}</div>
                     </div>
-                    <div className="text-xs text-concrete-500 uppercase tracking-wider mt-1">{chiffre.label}</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Image */}
             <div ref={addToRefs} className="reveal-right relative px-8 pb-8">
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={renovationImg}
-                    alt="Qualité GH Bâtiment"
-                    fill
-                    placeholder="blur"
-                    className="object-cover"
-                  />
+                  {engagementsSection.image?.url ? (
+                    <Image
+                      src={engagementsSection.image.url.replace(/^https?:\/\/[^/]+/, '')}
+                      alt="Qualité GH Bâtiment"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <Image
+                      src={renovationImg}
+                      alt="Qualité GH Bâtiment"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      placeholder="blur"
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 {/* Decorative Frame */}
                 <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-copper -z-10" />
 
                 {/* Stats Overlay */}
                 <div className="absolute -left-8 bottom-12 bg-concrete-950 p-6 lg:p-8">
-                  <div className="text-4xl lg:text-5xl font-display text-copper mb-1">20+</div>
-                  <div className="text-white text-sm tracking-wide">Années d&apos;expérience</div>
+                  <div className="text-4xl lg:text-5xl font-display text-copper mb-1">
+                    {engagementsSection.imageOverlayValue ?? '20+'}
+                  </div>
+                  <div className="text-white text-sm tracking-wide">
+                    {engagementsSection.imageOverlayLabel ?? "Années d'expérience"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -582,8 +491,8 @@ export default function HomePage() {
       </section>
 
       {/* Gallery Section - Editorial Design */}
-      <section className="py-6 lg:py-10 lg:h-[calc(100vh-5rem)] bg-[#f5f4f0] flex flex-col lg:overflow-hidden">
-        <div className="px-4 lg:px-16 max-w-[1600px] mx-auto w-full flex-1 flex flex-col min-h-0">
+      <section className="py-6 lg:py-10 bg-[#f5f4f0]">
+        <div className="px-4 lg:px-16 max-w-[1600px] mx-auto w-full">
           {/* Section header */}
           <div ref={addToRefs} className="reveal mb-6 lg:mb-8">
             <div className="flex items-center gap-4">
@@ -595,92 +504,30 @@ export default function HomePage() {
           </div>
 
           {/* Gallery Grid */}
-          <div className="flex-1 grid grid-cols-2 lg:grid-cols-12 grid-rows-3 lg:grid-rows-2 gap-3 lg:gap-4">
-            {/* Row 1 */}
-            {/* Image 1 - Rectangle large */}
+          <div className="grid grid-cols-2 lg:grid-cols-12 auto-rows-[250px] lg:auto-rows-[calc((100vh-14rem)/2)] gap-3 lg:gap-4">
+            {displayAlbums.map((album, index) => (
             <button
+              key={album.id}
               ref={addToRefs}
-              onClick={() => openAlbum(albums[0])}
-              className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
+              onClick={() => openAlbum(album)}
+              className={`reveal group col-span-1 ${COL_SPANS[index % 6]} focus:outline-none cursor-pointer`}
             >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[0].cover} alt={albums[0].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
+              <div className="relative h-full overflow-hidden shadow-lg">
+                {album.cover && (
+                  <Image
+                    src={album.cover}
+                    alt={album.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[0].title}</span>
+                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{album.title}</span>
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
               </div>
             </button>
-
-            {/* Image 2 - Carré */}
-            <button
-              ref={addToRefs}
-              onClick={() => openAlbum(albums[1])}
-              className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
-            >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[1].cover} alt={albums[1].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[1].title}</span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
-              </div>
-            </button>
-
-            {/* Image 3 - Petit rectangle */}
-            <button
-              ref={addToRefs}
-              onClick={() => openAlbum(albums[2])}
-              className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
-            >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[2].cover} alt={albums[2].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[2].title}</span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
-              </div>
-            </button>
-
-            {/* Row 2 */}
-            {/* Image 4 - Petit rectangle */}
-            <button
-              ref={addToRefs}
-              onClick={() => openAlbum(albums[3])}
-              className="reveal group col-span-1 lg:col-span-4 focus:outline-none cursor-pointer"
-            >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[3].cover} alt={albums[3].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[3].title}</span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
-              </div>
-            </button>
-
-            {/* Image 5 - Carré */}
-            <button
-              ref={addToRefs}
-              onClick={() => openAlbum(albums[4])}
-              className="reveal group col-span-1 lg:col-span-3 focus:outline-none cursor-pointer"
-            >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[4].cover} alt={albums[4].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[4].title}</span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
-              </div>
-            </button>
-
-            {/* Image 6 - Rectangle large */}
-            <button
-              ref={addToRefs}
-              onClick={() => openAlbum(albums[5])}
-              className="reveal group col-span-1 lg:col-span-5 focus:outline-none cursor-pointer"
-            >
-              <div className="relative h-full min-h-[150px] overflow-hidden shadow-lg">
-                <Image src={albums[5].cover} alt={albums[5].title} fill placeholder="blur" className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white text-sm font-medium">{albums[5].title}</span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">Voir l&apos;album</span>
-              </div>
-            </button>
+            ))}
           </div>
 
         </div>
@@ -740,9 +587,8 @@ export default function HomePage() {
                       src={image}
                       alt={`${selectedAlbum.title} - Photo ${index + 1}`}
                       fill
-                      placeholder="blur"
-                      className="object-contain"
                       sizes="(max-width: 1536px) 100vw, 1536px"
+                      className="object-contain"
                     />
                   </div>
                 </SwiperSlide>
@@ -808,6 +654,7 @@ export default function HomePage() {
             src={bandeauImg}
             alt="Contactez GH Bâtiment"
             fill
+            sizes="100vw"
             placeholder="blur"
             className="object-cover"
           />
