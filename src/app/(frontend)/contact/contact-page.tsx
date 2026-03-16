@@ -128,7 +128,7 @@ export default function ContactPage() {
         <div className="max-w-350 mx-auto grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden">
 
           {/* Left - Contact Info (Dark) */}
-          <div className="bg-concrete-950 py-16 lg:py-24 px-6 lg:px-16 relative overflow-hidden lg:flex lg:items-center">
+          <div className="bg-concrete-950 py-10 lg:py-12 px-6 lg:px-16 relative overflow-hidden lg:flex lg:items-center">
             <div className="relative z-10 max-w-md mx-auto lg:mx-0 w-full">
               <h2 className="font-display text-3xl text-white mb-4">
                 Nos coordonnées
@@ -226,7 +226,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right - Contact Form (Light) */}
-          <div className="bg-[#f5f4f0] py-16 lg:py-24 px-6 lg:px-16">
+          <div className="bg-[#f5f4f0] py-10 lg:py-12 px-6 lg:px-16">
             <div className="max-w-lg mx-auto lg:mx-0">
               <h2 className="font-display text-3xl text-concrete-900 mb-10">
                 Envoyez-nous un message
