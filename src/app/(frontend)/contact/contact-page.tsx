@@ -70,7 +70,7 @@ export default function ContactPage() {
   };
 
   return (
-    <>
+    <div className="bg-white">
       {/* Hero - Split Design */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-concrete-950">
         {/* Background Image - Right Side */}
@@ -124,11 +124,11 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content - Split Layout */}
-      <section className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+      <section className="relative px-4 lg:px-16 py-10 lg:py-16">
+        <div className="max-w-350 mx-auto grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden">
 
           {/* Left - Contact Info (Dark) */}
-          <div className="bg-concrete-900 py-16 lg:py-24 px-6 lg:px-16 relative overflow-hidden lg:flex lg:items-center">
+          <div className="bg-concrete-950 py-16 lg:py-24 px-6 lg:px-16 relative overflow-hidden lg:flex lg:items-center">
             <div className="relative z-10 max-w-md mx-auto lg:mx-0 w-full">
               <h2 className="font-display text-3xl text-white mb-4">
                 Nos coordonnées
@@ -226,7 +226,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right - Contact Form (Light) */}
-          <div className="bg-white py-16 lg:py-24 px-6 lg:px-16">
+          <div className="bg-[#f5f4f0] py-16 lg:py-24 px-6 lg:px-16">
             <div className="max-w-lg mx-auto lg:mx-0">
               <h2 className="font-display text-3xl text-concrete-900 mb-10">
                 Envoyez-nous un message
@@ -389,34 +389,36 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="h-[400px] lg:h-[500px] relative bg-concrete-200 overflow-hidden">
-        {/* Transparent overlay to block map interactions */}
-        <div className="absolute inset-0 z-10" />
+      <section className="px-4 lg:px-16 pb-6 lg:pb-10">
+        <div className="max-w-350 mx-auto h-[400px] lg:h-[500px] relative rounded-3xl overflow-hidden bg-concrete-200">
+          {/* Transparent overlay to block map interactions */}
+          <div className="absolute inset-0 z-10" />
 
-        {/* Map container - oversized to crop Google Maps UI elements */}
-        <div className="absolute -top-[100px] -bottom-[100px] -left-[400px] -right-[400px]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.8968509645856!2d2.3234!3d48.7334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d9eb92c5c7%3A0x2d4a5d4b6aee6d9a!2s4%20Rue%20Charles%20Legros%2C%2091320%20Wissous!5e0!3m2!1sfr!2sfr!4v1706000000000!5m2!1sfr!2sfr"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Localisation GH Bâtiment"
-          />
+          {/* Map container - oversized to crop Google Maps UI elements */}
+          <div className="absolute -top-[100px] -bottom-[100px] -left-[400px] -right-[400px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.8968509645856!2d2.3234!3d48.7334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d9eb92c5c7%3A0x2d4a5d4b6aee6d9a!2s4%20Rue%20Charles%20Legros%2C%2091320%20Wissous!5e0!3m2!1sfr!2sfr!4v1706000000000!5m2!1sfr!2sfr"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localisation GH Bâtiment"
+            />
+          </div>
+
+          {/* Overlay badge */}
+          <a
+            href="https://maps.google.com/?q=4+rue+Charles+Legros+91320+Wissous"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-6 left-6 z-20 bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
+          >
+            <p className="font-display text-concrete-900 group-hover:text-copper transition-colors">GH Bâtiment</p>
+            <p className="text-sm text-concrete-500">4 rue Charles Legros, 91320 Wissous</p>
+          </a>
         </div>
-
-        {/* Overlay badge */}
-        <a
-          href="https://maps.google.com/?q=4+rue+Charles+Legros+91320+Wissous"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute bottom-6 left-6 z-20 bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
-        >
-          <p className="font-display text-concrete-900 group-hover:text-copper transition-colors">GH Bâtiment</p>
-          <p className="text-sm text-concrete-500">4 rue Charles Legros, 91320 Wissous</p>
-        </a>
       </section>
-    </>
+    </div>
   );
 }

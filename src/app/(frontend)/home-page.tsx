@@ -231,11 +231,12 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
             <div className="flex flex-wrap gap-4 mb-12 animate-fade-in-up delay-500">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider text-sm
-                  rounded-xl hover:bg-copper-light transition-all duration-300 shadow-lg shadow-copper/20"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl overflow-hidden shadow-lg shadow-copper/20"
               >
-                <span>Devis gratuit</span>
-                <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute inset-0 bg-copper rounded-xl transition-transform duration-300 group-hover:translate-x-full" />
+                <div className="absolute inset-0 bg-white rounded-xl -translate-x-full transition-transform duration-300 group-hover:translate-x-0" />
+                <span className="relative z-10 font-bold uppercase tracking-wider text-sm text-white group-hover:text-concrete-900 transition-colors duration-300">Devis gratuit</span>
+                <svg className="relative z-10 w-5 h-5 transform group-hover:translate-x-1 transition-all duration-300 text-white group-hover:text-concrete-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
@@ -295,10 +296,10 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
           </div>
 
           {/* Métiers Grid */}
-          <div ref={addToRefs} className="reveal grid grid-cols-2 md:grid-cols-4 gap-px bg-concrete-800/50">
+          <div ref={addToRefs} className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
             {[
               { name: 'Maçonnerie', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <rect x="2" y="4" width="9" height="5" rx="0.5" />
                   <rect x="13" y="4" width="9" height="5" rx="0.5" />
                   <rect x="6" y="10" width="9" height="5" rx="0.5" />
@@ -309,14 +310,14 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 </svg>
               )},
               { name: 'Charpente', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <path d="M2 20L12 4l10 16" />
                   <path d="M6 14h12" />
                   <path d="M8.5 9l3.5 5 3.5-5" />
                 </svg>
               )},
               { name: 'Menuiserie', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <rect x="4" y="2" width="16" height="20" rx="1" />
                   <line x1="12" y1="2" x2="12" y2="22" />
                   <line x1="4" y1="12" x2="20" y2="12" />
@@ -324,7 +325,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 </svg>
               )},
               { name: 'Plomberie', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <path d="M7 4v4a5 5 0 0010 0V4" />
                   <path d="M7 8H4v3a3 3 0 003 3h0" />
                   <path d="M17 8h3v3a3 3 0 01-3 3h0" />
@@ -332,12 +333,12 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 </svg>
               )},
               { name: 'Électricité', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
                 </svg>
               )},
               { name: 'Carrelage', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <rect x="3" y="3" width="8" height="8" rx="0.5" />
                   <rect x="13" y="3" width="8" height="8" rx="0.5" />
                   <rect x="3" y="13" width="8" height="8" rx="0.5" />
@@ -345,7 +346,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 </svg>
               )},
               { name: 'Peinture', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <path d="M19 3H5a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" />
                   <path d="M12 11v5" />
                   <path d="M8 20h8" strokeLinecap="round" />
@@ -353,7 +354,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 </svg>
               )},
               { name: 'Isolation', icon: (
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
                   <rect x="4" y="2" width="16" height="20" rx="1" />
                   <path d="M4 8h16" />
                   <path d="M4 14h16" />
@@ -365,13 +366,18 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
             ].map((metier, index) => (
               <div
                 key={metier.name}
-                className="bg-concrete-950 p-8 lg:p-12 text-center group hover:bg-concrete-900 transition-colors duration-300"
+                className="group bg-white/5 border border-white/10 rounded-xl p-6 lg:p-8 text-center
+                  hover:bg-copper/15 hover:border-copper/30
+                  transition-all duration-300"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <span className="text-copper/60 group-hover:text-copper transition-colors flex justify-center mb-4">
-                  {metier.icon}
-                </span>
-                <span className="text-white font-medium tracking-wide">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-copper/15 flex items-center justify-center
+                  group-hover:bg-copper/25 transition-colors duration-300">
+                  <span className="text-copper transition-colors duration-300">
+                    {metier.icon}
+                  </span>
+                </div>
+                <span className="text-white text-sm font-medium tracking-wide group-hover:text-copper transition-colors duration-300">
                   {metier.name}
                 </span>
               </div>
@@ -431,7 +437,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
             {/* Image */}
             <div ref={addToRefs} className="reveal-right relative px-8 pb-8">
               <div className="relative">
-                <div className="relative aspect-[4/5] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                   {engagementsSection.image?.url ? (
                     <Image
                       src={engagementsSection.image.url.replace(/^https?:\/\/[^/]+/, '')}
@@ -452,7 +458,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                   )}
                 </div>
                 {/* Decorative Frame */}
-                <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-copper -z-10" />
+                <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-copper rounded-2xl -z-10" />
 
                 {/* Stats Overlay */}
                 <div className="absolute -left-8 bottom-12 bg-concrete-950 rounded-xl p-6 lg:p-8">
@@ -491,7 +497,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               onClick={() => openAlbum(album)}
               className={`reveal group col-span-1 ${COL_SPANS[index % 6]} focus:outline-none cursor-pointer`}
             >
-              <div className="relative h-full overflow-hidden shadow-lg">
+              <div className="relative h-full overflow-hidden shadow-lg rounded-xl">
                 {album.cover && (
                   <Image
                     src={album.cover}
@@ -590,8 +596,8 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
       )}
 
       {/* Partenaires Section */}
-      <section className="py-16 lg:py-24 px-4 lg:px-8 bg-background">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-24 lg:py-32 px-4 lg:px-16 bg-background">
+        <div className="max-w-350 mx-auto">
           <div
             ref={addToRefs}
             className="reveal text-center mb-12"
