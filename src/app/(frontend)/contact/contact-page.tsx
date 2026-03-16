@@ -129,67 +129,96 @@ export default function ContactPage() {
 
           {/* Left - Contact Info (Dark) */}
           <div className="bg-concrete-900 py-16 lg:py-24 px-6 lg:px-16 relative overflow-hidden lg:flex lg:items-center">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-                backgroundSize: '24px 24px'
-              }}
-            />
-
-            <div className="relative z-10 max-w-md mx-auto lg:mx-0">
-              <h2 className="font-display text-3xl text-white mb-12">
+            <div className="relative z-10 max-w-md mx-auto lg:mx-0 w-full">
+              <h2 className="font-display text-3xl text-white mb-4">
                 Nos coordonnées
               </h2>
+              <p className="text-concrete-400 text-sm mb-10">
+                Notre équipe est disponible pour répondre à toutes vos questions.
+              </p>
 
-              {/* Contact Items */}
-              <div className="space-y-10">
-                {/* Phone - Primary */}
-                <div className="group">
-                  <span className="text-copper text-xs font-medium tracking-widest uppercase mb-3 block">
-                    Téléphone
-                  </span>
-                  <a href="tel:0980336060"
-                    className="font-display text-3xl lg:text-4xl text-white hover:text-copper transition-colors block">
-                    09 80 33 60 60
-                  </a>
-                </div>
+              {/* Contact Cards */}
+              <div className="space-y-4">
+                {/* Phone */}
+                <a href="tel:0980336060"
+                  className="group flex items-center gap-5 p-5 bg-white/5 rounded-xl
+                    hover:bg-copper/15 border border-white/10 hover:border-copper/30
+                    transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-copper/15 rounded-xl flex items-center justify-center shrink-0
+                    group-hover:bg-copper/25 transition-colors duration-300">
+                    <svg className="w-5 h-5 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="text-concrete-400 text-xs font-medium tracking-wider uppercase block mb-1">
+                      Téléphone
+                    </span>
+                    <span className="text-white font-display text-xl group-hover:text-copper transition-colors">
+                      09 80 33 60 60
+                    </span>
+                  </div>
+                </a>
 
                 {/* Email */}
-                <div className="group">
-                  <span className="text-copper text-xs font-medium tracking-widest uppercase mb-3 block">
-                    Email
-                  </span>
-                  <a href="mailto:contact.ghbat@gmail.com"
-                    className="font-display text-2xl text-white hover:text-copper transition-colors break-all">
-                    contact.ghbat@gmail.com
-                  </a>
-                </div>
+                <a href="mailto:contact.ghbat@gmail.com"
+                  className="group flex items-center gap-5 p-5 bg-white/5 rounded-xl
+                    hover:bg-copper/15 border border-white/10 hover:border-copper/30
+                    transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-copper/15 rounded-xl flex items-center justify-center shrink-0
+                    group-hover:bg-copper/25 transition-colors duration-300">
+                    <svg className="w-5 h-5 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-concrete-400 text-xs font-medium tracking-wider uppercase block mb-1">
+                      Email
+                    </span>
+                    <span className="text-white font-display text-xl group-hover:text-copper transition-colors truncate block">
+                      contact.ghbat@gmail.com
+                    </span>
+                  </div>
+                </a>
 
                 {/* Address */}
-                <div className="group">
-                  <span className="text-copper text-xs font-medium tracking-widest uppercase mb-3 block">
-                    Adresse
-                  </span>
-                  <p className="text-white text-lg">
-                    4 rue Charles Legros
-                  </p>
-                  <p className="text-concrete-400">
-                    91320 Wissous, France
-                  </p>
+                <div className="flex items-center gap-5 p-5 bg-white/5 rounded-xl border border-white/10">
+                  <div className="w-12 h-12 bg-copper/15 rounded-xl flex items-center justify-center shrink-0">
+                    <svg className="w-5 h-5 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="text-concrete-400 text-xs font-medium tracking-wider uppercase block mb-1">
+                      Adresse
+                    </span>
+                    <span className="text-white block">4 rue Charles Legros</span>
+                    <span className="text-concrete-400 text-sm">91320 Wissous, France</span>
+                  </div>
                 </div>
 
                 {/* Hours */}
-                <div className="group">
-                  <span className="text-copper text-xs font-medium tracking-widest uppercase mb-3 block">
-                    Horaires
-                  </span>
-                  <p className="text-white">
-                    Lundi — Vendredi
-                  </p>
-                  <p className="text-concrete-400">
-                    9h00 — 18h00
-                  </p>
+                <div className="flex items-center gap-5 p-5 bg-white/5 rounded-xl border border-white/10">
+                  <div className="w-12 h-12 bg-copper/15 rounded-xl flex items-center justify-center shrink-0">
+                    <svg className="w-5 h-5 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="text-concrete-400 text-xs font-medium tracking-wider uppercase block mb-1">
+                      Horaires
+                    </span>
+                    <span className="text-white block">Lundi — Vendredi</span>
+                    <span className="text-concrete-400 text-sm">9h00 — 18h00</span>
+                  </div>
                 </div>
               </div>
 
@@ -314,38 +343,42 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'loading' || status === 'success'}
-                  className="group w-full sm:w-auto px-8 py-4 bg-copper text-white font-semibold text-sm uppercase tracking-wider
-                    hover:bg-concrete-900 transition-colors flex items-center justify-center gap-3
+                  className="group relative w-full sm:w-auto px-8 py-4 rounded-xl overflow-hidden
+                    flex items-center justify-center gap-3 cursor-pointer
                     disabled:opacity-50 disabled:cursor-not-allowed"
                 >
+                  <div className="absolute inset-0 bg-copper rounded-xl transition-transform duration-300
+                    group-hover:translate-x-full group-disabled:group-hover:translate-x-0" />
+                  <div className="absolute inset-0 bg-concrete-900 rounded-xl -translate-x-full transition-transform duration-300
+                    group-hover:translate-x-0 group-disabled:group-hover:-translate-x-full" />
                   {status === 'loading' ? (
-                    <>
+                    <span className="relative z-10 flex items-center gap-3 text-white font-semibold text-sm uppercase tracking-wider">
                       <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                       </svg>
                       <span>Envoi en cours...</span>
-                    </>
+                    </span>
                   ) : (
-                    <>
+                    <span className="relative z-10 flex items-center gap-3 text-white font-semibold text-sm uppercase tracking-wider">
                       <span>Envoyer</span>
                       <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </>
+                    </span>
                   )}
                 </button>
 
                 {/* Feedback messages */}
                 {status === 'success' && (
-                  <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm">
+                  <div className="p-4 bg-green-50 border border-green-200 text-green-800 text-sm rounded-xl">
                     <p className="font-semibold">Message envoyé avec succès !</p>
                     <p>Nous vous répondrons sous 48h.</p>
                   </div>
                 )}
 
                 {status === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm">
+                  <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-sm rounded-xl">
                     <p>{errorMessage}</p>
                   </div>
                 )}
@@ -378,7 +411,7 @@ export default function ContactPage() {
           href="https://maps.google.com/?q=4+rue+Charles+Legros+91320+Wissous"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute bottom-6 left-6 z-20 bg-white p-4 shadow-lg hover:shadow-xl transition-shadow group"
+          className="absolute bottom-6 left-6 z-20 bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow group"
         >
           <p className="font-display text-concrete-900 group-hover:text-copper transition-colors">GH Bâtiment</p>
           <p className="text-sm text-concrete-500">4 rue Charles Legros, 91320 Wissous</p>

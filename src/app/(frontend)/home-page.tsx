@@ -10,38 +10,26 @@ import { EffectCreative, Keyboard } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
+import { LogoLoop } from '@/components/ui/LogoLoop';
 
 // Images — Hero & Sections
 import heroImg from '../../../public/images/Home2.webp';
 import renovationImg from '../../../public/images/Savoir-faire/renovation.webp';
 import bandeauImg from '../../../public/images/Savoir-faire/bandeau.webp';
 
-// Images — Partenaires
-import cedeoImg from '../../../public/images/Partenaire/cedeo.webp';
-import pointPImg from '../../../public/images/Partenaire/pointP.webp';
-import carrelageRogerImg from '../../../public/images/Partenaire/carrelageRoger.webp';
-import kdiImg from '../../../public/images/Partenaire/kdi.webp';
-import chossiereImg from '../../../public/images/Partenaire/chossiere.webp';
-import raboniImg from '../../../public/images/Partenaire/raboni.webp';
-import nolletImg from '../../../public/images/Partenaire/nollet.webp';
-import laPaletteImg from '../../../public/images/Partenaire/lapalette.webp';
-import cogefermImg from '../../../public/images/Partenaire/cogeferm.webp';
-import lossignolImg from '../../../public/images/Partenaire/lossignol.webp';
-import petruzellaImg from '../../../public/images/Partenaire/petruzella.webp';
-
 // Liste des partenaires
 const partenaires = [
-  { src: cedeoImg, alt: 'Cedeo', width: 100 },
-  { src: pointPImg, alt: 'Point P', width: 150 },
-  { src: carrelageRogerImg, alt: 'Carrelage Roger', width: 200 },
-  { src: kdiImg, alt: 'KDI', width: 100 },
-  { src: chossiereImg, alt: 'Chossiere', width: 100 },
-  { src: raboniImg, alt: 'Raboni', width: 100 },
-  { src: nolletImg, alt: 'Nollet', width: 100 },
-  { src: laPaletteImg, alt: 'La Palette', width: 200 },
-  { src: cogefermImg, alt: 'Cogeferm', width: 200 },
-  { src: lossignolImg, alt: 'Lossignol', width: 100 },
-  { src: petruzellaImg, alt: 'Petruzella', width: 100 },
+  { src: '/images/Partenaire/cedeo.webp', alt: 'Cedeo' },
+  { src: '/images/Partenaire/pointP.webp', alt: 'Point P' },
+  { src: '/images/Partenaire/carrelageRoger.webp', alt: 'Carrelage Roger' },
+  { src: '/images/Partenaire/kdi.webp', alt: 'KDI' },
+  { src: '/images/Partenaire/chossiere.webp', alt: 'Chossiere' },
+  { src: '/images/Partenaire/raboni.webp', alt: 'Raboni' },
+  { src: '/images/Partenaire/nollet.webp', alt: 'Nollet' },
+  { src: '/images/Partenaire/lapalette.webp', alt: 'La Palette' },
+  { src: '/images/Partenaire/cogeferm.webp', alt: 'Cogeferm' },
+  { src: '/images/Partenaire/lossignol.webp', alt: 'Lossignol' },
+  { src: '/images/Partenaire/petruzella.webp', alt: 'Petruzella' },
 ];
 
 type MediaObject = { id: string; url: string; width?: number; height?: number; alt?: string };
@@ -202,17 +190,11 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
           />
         </div>
 
-        {/* Architectural frame accents */}
-        <div className="absolute top-8 left-6 md:left-12 lg:left-16 w-16 h-16 border-l-2 border-t-2 border-copper/40 z-20 animate-fade-in delay-600" />
-        <div className="absolute top-8 right-6 md:right-12 lg:right-16 w-16 h-16 border-r-2 border-t-2 border-copper/40 z-20 animate-fade-in delay-700" />
-        <div className="absolute bottom-8 right-6 md:right-12 lg:right-16 w-16 h-16 border-r-2 border-b-2 border-copper/40 z-20 animate-fade-in delay-800" />
-
         {/* Content */}
         <div className="relative z-20 flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-24 pt-32 pb-16 lg:pt-40 lg:pb-20">
           <div className="max-w-4xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
-              <span className="inline-block w-12 h-[2px] bg-copper" />
               <span className="text-copper font-semibold text-xs md:text-sm uppercase tracking-[0.3em]">
                 Entreprise générale du bâtiment · Île-de-France
               </span>
@@ -229,11 +211,8 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               </span>
             </h1>
 
-            {/* Copper divider */}
-            <div className="w-24 h-1 bg-gradient-to-r from-copper to-copper-light mb-8 animate-fade-in-up delay-200" />
-
-            {/* H2 Tagline with decorative line - Keywords rich */}
-            <div className="relative pl-6 border-l-2 border-copper/50 mb-8 animate-fade-in-up delay-300">
+            {/* H2 Tagline */}
+            <div className="relative mb-8 animate-fade-in-up delay-200">
               <h2 className="text-xl md:text-2xl font-display text-white tracking-wide uppercase">
                 Travaux tous corps de métier en Île-de-France
               </h2>
@@ -253,7 +232,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-3 px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider text-sm
-                  hover:bg-copper-light transition-all duration-300 shadow-lg shadow-copper/20"
+                  rounded-xl hover:bg-copper-light transition-all duration-300 shadow-lg shadow-copper/20"
               >
                 <span>Devis gratuit</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -263,7 +242,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               <a
                 href="tel:0980336060"
                 className="group inline-flex items-center gap-3 px-8 py-4 border border-white/25 text-white
-                  hover:border-copper hover:text-copper transition-all duration-300 backdrop-blur-sm"
+                  rounded-xl hover:border-copper hover:text-copper transition-all duration-300 backdrop-blur-sm"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -277,10 +256,10 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
             <div className="flex flex-wrap items-center justify-between gap-4 animate-fade-in-up delay-600">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-concrete-400 text-xs uppercase tracking-widest mr-2">Artisan certifié</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Certification Qualibat - Qualification des entreprises de bâtiment">QUALIBAT</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Reconnu Garant de l'Environnement - Travaux de rénovation énergétique">RGE</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Handibat - Accessibilité et adaptation du bâtiment">HANDIBAT</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm" title="Qualifelec - Qualification des entreprises d'électricité">QUALIFELEC</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Certification Qualibat - Qualification des entreprises de bâtiment">QUALIBAT</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Reconnu Garant de l'Environnement - Travaux de rénovation énergétique">RGE</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Handibat - Accessibilité et adaptation du bâtiment">HANDIBAT</span>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Qualifelec - Qualification des entreprises d'électricité">QUALIFELEC</span>
               </div>
 
               {/* Scroll indicator */}
@@ -420,7 +399,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                   const iconPath = ICON_PATHS[item.icon] ?? ICON_PATHS.shield;
                   return (
                     <div key={item.id} className="flex gap-6">
-                      <div className="w-12 h-12 bg-copper/10 flex items-center justify-center shrink-0">
+                      <div className="w-12 h-12 bg-copper/10 rounded-xl flex items-center justify-center shrink-0">
                         <svg className="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={iconPath} />
                         </svg>
@@ -476,7 +455,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
                 <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-copper -z-10" />
 
                 {/* Stats Overlay */}
-                <div className="absolute -left-8 bottom-12 bg-concrete-950 p-6 lg:p-8">
+                <div className="absolute -left-8 bottom-12 bg-concrete-950 rounded-xl p-6 lg:p-8">
                   <div className="text-4xl lg:text-5xl font-display text-copper mb-1">
                     {engagementsSection.imageOverlayValue ?? '20+'}
                   </div>
@@ -611,8 +590,8 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
       )}
 
       {/* Partenaires Section */}
-      <section className="section bg-background">
-        <div className="container-wide">
+      <section className="py-16 lg:py-24 px-4 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
           <div
             ref={addToRefs}
             className="reveal text-center mb-12"
@@ -623,57 +602,39 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
             </h2>
           </div>
 
-          {/* Auto-scroll fluide CSS */}
-          <div className="overflow-hidden py-8">
-            <div className="flex gap-8 lg:gap-16 animate-marquee w-max">
-              {[...partenaires, ...partenaires].map((partenaire, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 flex items-center justify-center h-16 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
-                >
-                  <Image
-                    src={partenaire.src}
-                    alt={partenaire.alt}
-                    width={partenaire.width}
-                    height={60}
-                    placeholder="blur"
-                    className="h-12 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <LogoLoop
+            logos={partenaires}
+            speed={80}
+            logoHeight={50}
+            gap={56}
+            pauseOnHover
+            scaleOnHover
+            fadeOut
+          />
         </div>
       </section>
 
-      {/* CTA Section — Full-width Banner */}
-      <section className="relative py-16 lg:py-20 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={bandeauImg}
-            alt="Contactez GH Bâtiment"
-            fill
-            sizes="100vw"
-            placeholder="blur"
-            className="object-cover"
-          />
-          {/* Layered overlays for depth */}
-          <div className="absolute inset-0 bg-concrete-950/85" />
-          <div className="absolute inset-0 bg-gradient-to-r from-concrete-950/40 via-transparent to-concrete-950/40" />
-        </div>
+      {/* CTA Section — Card Style */}
+      <section className="px-4 lg:px-16 pb-6 lg:pb-10">
+        <div className="max-w-350 mx-auto relative rounded-3xl overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={bandeauImg}
+              alt="Contactez GH Bâtiment"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1100px"
+              placeholder="blur"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-concrete-950/85" />
+            <div className="absolute inset-0 bg-gradient-to-r from-concrete-950/40 via-transparent to-concrete-950/40" />
+          </div>
 
-        {/* Decorative architectural elements */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-copper/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-copper/40 to-transparent" />
-        <div className="absolute top-8 left-8 w-12 h-12 border-l border-t border-copper/30 hidden lg:block" />
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-copper/30 hidden lg:block" />
-
-        {/* Content */}
-        <div className="container-wide relative z-10">
+          {/* Content */}
           <div
             ref={addToRefs}
-            className="reveal max-w-3xl mx-auto text-center"
+            className="reveal relative z-10 px-8 py-16 md:px-16 lg:px-24 lg:py-24 text-center"
           >
             <span className="inline-flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-copper" />
@@ -694,7 +655,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-3 px-8 py-4 bg-copper text-white font-bold uppercase tracking-wider text-sm
-                  hover:bg-white hover:text-concrete-950 transition-all duration-300"
+                  rounded-xl hover:bg-white hover:text-concrete-950 transition-all duration-300"
               >
                 <span>Contactez-nous</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -704,7 +665,7 @@ export default function HomePage({ engagementsSection, galerieSection }: HomePag
               <a
                 href="tel:0980336060"
                 className="group inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white
-                  hover:border-copper hover:text-copper transition-all duration-300"
+                  rounded-xl hover:border-copper hover:text-copper transition-all duration-300"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

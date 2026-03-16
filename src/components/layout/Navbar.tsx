@@ -145,19 +145,13 @@ export default function Navbar() {
               {/* CTA Button - Industrial style */}
               <Link
                 href="/contact"
-                className="group relative ml-6 px-6 py-3 overflow-hidden"
+                className="group relative ml-6 px-6 py-3 rounded-xl overflow-hidden"
               >
                 {/* Background layers */}
-                <div className="absolute inset-0 bg-copper transition-transform duration-300
+                <div className="absolute inset-0 bg-copper rounded-xl transition-transform duration-300
                   group-hover:translate-x-full" />
-                <div className="absolute inset-0 bg-white -translate-x-full transition-transform duration-300
+                <div className="absolute inset-0 bg-white rounded-xl -translate-x-full transition-transform duration-300
                   group-hover:translate-x-0" />
-
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-white/30
-                  group-hover:border-copper transition-colors duration-300" />
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-r-2 border-b-2 border-white/30
-                  group-hover:border-copper transition-colors duration-300" />
 
                 <span className="relative z-10 text-[13px] font-bold uppercase tracking-[0.1em] text-white
                   group-hover:text-concrete-900 transition-colors duration-300">
@@ -277,10 +271,10 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden"
+              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-copper" />
-              <div className="absolute inset-0 bg-copper-light translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-copper rounded-xl" />
+              <div className="absolute inset-0 bg-copper-light rounded-xl translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
               <span className="relative text-sm font-bold uppercase tracking-[0.15em] text-white">
                 Demander un devis
               </span>
