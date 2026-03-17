@@ -85,6 +85,11 @@ async function seed() {
 }
 
 seed().catch((err) => {
+  // 42P01 = table inexistante (premier déploiement, migrations pas encore faites)
+  if (err?.code === '42P01' || err?.cause?.code === '42P01') {
+    console.log('Tables non créées, seed ignoré (premier déploiement).');
+    process.exit(0);
+  }
   console.error('Erreur seed:', err);
   process.exit(1);
 });
