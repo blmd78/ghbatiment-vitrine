@@ -47,6 +47,11 @@ require.cache['@next/env'] = {
   exports: { loadEnvConfig: () => ({ combinedEnv: process.env, loadedEnvFiles: [] }) },
 } as never;
 
+// ─── Forcer connexion directe pour les migrations ────────────────────────────
+if (process.env.DATABASE_URL_UNPOOLED) {
+  process.env.DATABASE_URL = process.env.DATABASE_URL_UNPOOLED;
+}
+
 // ─── Push DB ─────────────────────────────────────────────────────────────────
 async function pushDb() {
   const { getPayload } = await import('payload');

@@ -71,6 +71,7 @@ export default buildConfig({
     },
     meta: {
       titleSuffix: ' — GH Bâtiment',
+      icons: [{ rel: 'icon', type: 'image/x-icon', url: '/favicon.ico' }],
     },
     components: {
       beforeLogin: ['/src/components/payload/OTPLogin'],
@@ -90,7 +91,7 @@ export default buildConfig({
   db: postgresAdapter({
     push: true,
     pool: {
-      connectionString: process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '',
+      connectionString: process.env.DATABASE_URL || '',
     },
   }),
   plugins,
