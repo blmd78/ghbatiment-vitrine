@@ -60,9 +60,10 @@ async function seed() {
   const payload = await getPayload({ config });
 
   // Forcer la création des tables si elles n'existent pas
-  if (payload.db && typeof payload.db.push === 'function') {
+  const db = payload.db as unknown as Record<string, unknown>;
+  if (db && typeof db.push === 'function') {
     console.log('Push du schéma DB...');
-    await payload.db.push({ forceAcceptWarning: true });
+    await (db.push as (args: { forceAcceptWarning: boolean }) => Promise<void>)({ forceAcceptWarning: true });
     console.log('Schéma DB synchronisé.');
   }
 
