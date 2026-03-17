@@ -45,7 +45,7 @@ if (!process.env.PAYLOAD_SECRET) {
 }
 
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
-const adminURL = serverURL.replace('://localhost', '://admin.localhost');
+const adminURL = process.env.NEXT_PUBLIC_ADMIN_URL || serverURL.replace('://localhost', '://admin.localhost');
 
 export default buildConfig({
   serverURL,
