@@ -30,7 +30,7 @@ for (const envFile of ['.env.local', '.env']) {
   }
 }
 
-// ─── Mock @next/env (absent hors Next.js runtime) ──────────────────────────
+// ─── Mock @next/env ──────────────────────────────────────────────────────────
 const require = createRequire(import.meta.url);
 const Module = require('node:module');
 const origResolve = Module._resolveFilename;
@@ -47,49 +47,27 @@ require.cache['@next/env'] = {
   exports: { loadEnvConfig: () => ({ combinedEnv: process.env, loadedEnvFiles: [] }) },
 } as never;
 
-// ─── Seed ───────────────────────────────────────────────────────────────────
-async function seed() {
-  const email = process.env.ADMIN_SEED_EMAIL;
-  if (!email) {
-    console.log('ADMIN_SEED_EMAIL non défini, seed ignoré.');
-    process.exit(0);
-  }
-
+// ─── Push DB ─────────────────────────────────────────────────────────────────
+async function pushDb() {
   const { getPayload } = await import('payload');
   const { default: config } = await import('../payload.config.js');
   const payload = await getPayload({ config });
 
-  const { docs } = await payload.find({
-    collection: 'users',
-    limit: 1,
-    overrideAccess: true,
-  });
-
-  if (docs.length > 0) {
-    console.log('Utilisateur(s) existant(s), seed ignoré.');
-    process.exit(0);
+  const db = payload.db as unknown as Record<string, unknown>;
+  if (db && typeof db.push === 'function') {
+    console.log('Push du schéma DB en cours...');
+    await (db.push as (args: { forceAcceptWarning: boolean }) => Promise<void>)({
+      forceAcceptWarning: true,
+    });
+    console.log('Schéma DB synchronisé.');
+  } else {
+    console.log('Méthode push non disponible sur le DB adapter.');
   }
 
-  await payload.create({
-    collection: 'users',
-    data: {
-      email,
-      role: 'admin',
-      name: 'Admin',
-    },
-    overrideAccess: true,
-  });
-
-  console.log(`Admin créé : ${email}`);
   process.exit(0);
 }
 
-seed().catch((err) => {
-  // 42P01 = table inexistante (premier déploiement, migrations pas encore faites)
-  if (err?.code === '42P01' || err?.cause?.code === '42P01') {
-    console.log('Tables non créées, seed ignoré (premier déploiement).');
-    process.exit(0);
-  }
-  console.error('Erreur seed:', err);
+pushDb().catch((err) => {
+  console.error('Erreur push DB:', err);
   process.exit(1);
 });

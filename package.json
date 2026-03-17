@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && pnpm admin:seed",
+    "build": "pnpm db:push && next build && pnpm admin:seed",
+    "db:push": "npx tsx src/scripts/push-db.ts",
     "admin:seed": "npx tsx src/scripts/seed-admin.ts",
     "start": "next start",
     "lint": "eslint"
