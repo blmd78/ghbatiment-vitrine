@@ -57,6 +57,36 @@ type PayloadAlbum = { id?: string | null; title: string; images?: (string | Payl
 type GalerieSection = { albums?: PayloadAlbum[] | null };
 type DisplayAlbum = { id: string; title: string; cover: string; images: string[] };
 
+const DEFAULT_ENGAGEMENTS: EngagementItem[] = [
+  {
+    id: 'certifications',
+    title: 'Certifications reconnues',
+    description:
+      'Qualibat, RGE, Handibat, Qualifelec : nos certifications attestent de notre professionnalisme et de notre engagement qualité.',
+    icon: 'shield',
+  },
+  {
+    id: 'equipes',
+    title: 'Équipes qualifiées',
+    description:
+      'Des artisans expérimentés et formés dans chaque domaine pour un travail impeccable sur tous vos chantiers.',
+    icon: 'team',
+  },
+  {
+    id: 'suivi',
+    title: 'Suivi personnalisé',
+    description:
+      "Un interlocuteur unique et un reporting régulier pour une transparence totale sur l'avancement de vos travaux.",
+    icon: 'checklist',
+  },
+];
+
+const DEFAULT_STATS: Array<{ value: string; suffix?: string; label: string; id: string }> = [
+  { id: 'ca', value: '700K', suffix: '€', label: "Chiffre d'affaires" },
+  { id: 'chantiers', value: '70', suffix: '+', label: 'Chantiers réalisés' },
+  { id: 'satisfaction', value: '98', suffix: '%', label: 'Clients satisfaits' },
+];
+
 const ICON_PATHS: Record<string, string> = {
   shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   team: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
@@ -401,7 +431,7 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
               </h2>
 
               <div className="space-y-8">
-                {(engagementsSection.engagements ?? []).map((item: EngagementItem) => {
+                {(engagementsSection.engagements?.length ? engagementsSection.engagements : DEFAULT_ENGAGEMENTS).map((item: EngagementItem) => {
                   const iconPath = ICON_PATHS[item.icon] ?? ICON_PATHS.shield;
                   return (
                     <div key={item.id} className="flex gap-6">
@@ -420,9 +450,11 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
               </div>
 
               {/* Chiffres clés */}
-              {engagementsSection.stats && engagementsSection.stats.length > 0 && (
+              {(() => {
+                const stats = engagementsSection.stats?.length ? engagementsSection.stats : DEFAULT_STATS;
+                return stats.length > 0 && (
                 <div className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-concrete-200">
-                  {engagementsSection.stats.map((stat, index) => (
+                  {stats.map((stat, index) => (
                     <div key={stat.id ?? index} className="text-center">
                       <div className="text-3xl font-display text-copper">
                         {stat.value}{stat.suffix}
@@ -431,7 +463,8 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
                     </div>
                   ))}
                 </div>
-              )}
+                );
+              })()}
             </div>
 
             {/* Image */}

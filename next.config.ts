@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       { protocol: 'http', hostname: 'localhost', port: '3000' },
       { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },
       { protocol: 'https', hostname: '**.io.cloud.ovh.net' },
-      { protocol: 'https', hostname: 'ghbatiment.fr' },
+      { protocol: 'https', hostname: 'ghbat.fr' },
     ],
   },
   async headers() {
