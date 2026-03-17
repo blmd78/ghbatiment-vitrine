@@ -90,7 +90,7 @@ export default buildConfig({
   db: postgresAdapter({
     push: true,
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '',
     },
   }),
   plugins,
