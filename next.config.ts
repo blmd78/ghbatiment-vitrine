@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'http', hostname: 'localhost', port: '3000' },
       { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },
+      { protocol: 'https', hostname: '**.io.cloud.ovh.net' },
       { protocol: 'https', hostname: 'ghbatiment.fr' },
     ],
   },

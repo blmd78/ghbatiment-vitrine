@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 import { Users } from './collections/users';
 import { Media } from './collections/media';
-import { EngagementsSection } from './globals/engagements-section';
+// import { EngagementsSection } from './globals/engagements-section';
 import { GalerieGlobal } from './globals/galerie';
 
 const filename = fileURLToPath(import.meta.url);
@@ -40,6 +40,10 @@ if (process.env.S3_BUCKET) {
   );
 }
 
+if (!process.env.PAYLOAD_SECRET) {
+  throw new Error('PAYLOAD_SECRET manquant — définis-le dans .env.local');
+}
+
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
 const adminURL = serverURL.replace('://localhost', '://admin.localhost');
 
@@ -59,7 +63,7 @@ export default buildConfig({
     livePreview: {
       url: () => serverURL,
       collections: [],
-      globals: ['engagements-section', 'galerie'],
+      globals: [/* 'engagements-section', */ 'galerie'],
       breakpoints: [
         { label: 'Mobile', name: 'mobile', width: 375, height: 812 },
         { label: 'Tablette', name: 'tablet', width: 768, height: 1024 },
@@ -69,6 +73,7 @@ export default buildConfig({
       titleSuffix: ' — GH Bâtiment',
     },
     components: {
+      beforeLogin: ['/src/components/payload/OTPLogin'],
       graphics: {
         Logo: '/src/components/payload/Logo',
         Icon: '/src/components/payload/Icon',
@@ -76,9 +81,9 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [EngagementsSection, GalerieGlobal],
+  globals: [/* EngagementsSection, */ GalerieGlobal],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || 'CHANGE-ME-IN-PRODUCTION',
+  secret: process.env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

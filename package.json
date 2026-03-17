@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm admin:seed && next build",
+    "admin:seed": "npx tsx src/scripts/seed-admin.ts",
     "start": "next start",
     "lint": "eslint"
   },
@@ -35,6 +36,7 @@
     "eslint-config-next": "16.1.4",
     "sass": "^1.98.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
