@@ -31,14 +31,10 @@ export const metadata: Metadata = {
 export default async function Page() {
   const payload = await getPayload({ config: configPromise });
 
-  const [engagementsSection, galerieSection] = await Promise.all([
-    payload.findGlobal({ slug: 'engagements-section', depth: 1 }),
-    payload.findGlobal({ slug: 'galerie', depth: 2 }),
-  ]);
+  const galerieSection = await payload.findGlobal({ slug: 'galerie', depth: 2 });
 
   return (
     <HomePage
-      engagementsSection={engagementsSection}
       galerieSection={galerieSection}
     />
   );

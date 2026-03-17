@@ -67,11 +67,11 @@ const ICON_PATHS: Record<string, string> = {
 };
 
 type HomePageProps = {
-  engagementsSection: EngagementsSectionData;
+  engagementsSection?: EngagementsSectionData;
   galerieSection?: GalerieSection | null;
 };
 
-export default function HomePage({ engagementsSection, galerieSection }: HomePageProps) {
+export default function HomePage({ engagementsSection = {}, galerieSection }: HomePageProps) {
   const router = useRouter();
 
   const revealRefs = useRef<(HTMLElement | null)[]>([]);
