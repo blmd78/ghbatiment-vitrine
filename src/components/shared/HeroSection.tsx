@@ -19,7 +19,8 @@ export function HeroSection() {
           placeholder="blur"
           className="object-cover hero-img-zoom"
           priority
-          quality={75}
+          fetchPriority="high"
+          quality={65}
         />
         {/* Cinematic multi-layer overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-concrete-950/70 via-concrete-950/50 to-concrete-950/90" />
