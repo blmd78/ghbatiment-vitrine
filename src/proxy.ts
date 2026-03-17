@@ -14,7 +14,7 @@ const cspValue = [
   `connect-src 'self' https://challenges.cloudflare.com${isDev ? ' http://localhost:3000 http://admin.localhost:3000' : ''}`,
 ].join('; ');
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   const { pathname } = request.nextUrl;
 
