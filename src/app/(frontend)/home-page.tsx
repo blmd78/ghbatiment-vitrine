@@ -3,17 +3,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { RefreshRouteOnSave } from '@payloadcms/live-preview-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCreative, Keyboard } from 'swiper/modules';
-import type { Swiper as SwiperType } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/effect-creative';
+
+const AlbumModal = dynamic(
+  () => import('@/components/shared/AlbumModal').then((mod) => mod.AlbumModal),
+  { ssr: false },
+);
 import { LogoLoop } from '@/components/ui/LogoLoop';
 
-// Images — Hero & Sections
-import heroImg from '../../../public/images/Home2.webp';
+// Images — Sections
 import renovationImg from '../../../public/images/Savoir-faire/renovation.webp';
 import bandeauImg from '../../../public/images/Savoir-faire/bandeau.webp';
 
@@ -122,41 +122,13 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
     });
     return { id: album.id || String(i), title: album.title, cover: imgs[0] || '', images: imgs };
   });
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const [isEntering, setIsEntering] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
-  const swiperRef = useRef<SwiperType | null>(null);
-
   const openAlbum = useCallback((album: DisplayAlbum) => {
     setSelectedAlbum(album);
-    setCurrentImageIndex(0);
-    setIsEntering(true);
-    setTimeout(() => setIsEntering(false), 50);
   }, []);
 
   const closeAlbum = useCallback(() => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setSelectedAlbum(null);
-      setIsExiting(false);
-    }, 300);
+    setSelectedAlbum(null);
   }, []);
-
-  // Fermer le modal avec Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeAlbum();
-    };
-    if (selectedAlbum) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedAlbum, closeAlbum]);
 
 
   useEffect(() => {
@@ -196,115 +168,6 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
         refresh={router.refresh}
         serverURL={process.env.NEXT_PUBLIC_ADMIN_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}
       />
-      {/* Hero Section - Full-bleed Cinematic */}
-      <section className="relative min-h-[85vh] overflow-hidden" aria-label="Présentation GH Bâtiment entreprise générale du bâtiment en ��le-de-France">
-        {/* Full-bleed background image */}
-        <div className="absolute inset-0">
-          <Image
-            src={heroImg}
-            alt="GH Bâtiment - Entreprise générale du bâtiment tous corps de métier, chantier de construction et rénovation en Île-de-France"
-            fill
-            sizes="100vw"
-            placeholder="blur"
-            className="object-cover hero-img-zoom"
-            priority
-          />
-          {/* Cinematic multi-layer overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-concrete-950/70 via-concrete-950/50 to-concrete-950/90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-concrete-950/60 via-transparent to-transparent" />
-          {/* Grain texture */}
-          <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            }}
-          />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-20 flex flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-24 pt-32 pb-16 lg:pt-40 lg:pb-20">
-          <div className="max-w-4xl">
-            {/* Eyebrow */}
-            <div className="flex items-center gap-4 mb-8 animate-fade-in-up">
-              <span className="text-copper font-semibold text-xs md:text-sm uppercase tracking-[0.3em]">
-                Entreprise générale du bâtiment · Île-de-France
-              </span>
-            </div>
-
-            {/* Main title - SEO H1 with full keywords */}
-            <h1 className="font-display leading-[0.9] mb-8 animate-fade-in-up delay-100">
-              <span className="block text-[clamp(4rem,12vw,9rem)] text-white tracking-tight">
-                <span>GH</span>{' '}
-                <span className="text-copper">BÂTIMENT</span>
-              </span>
-              <span className="block text-[clamp(1.1rem,2.5vw,1.75rem)] text-concrete-300 mt-4 tracking-[0.15em] font-display uppercase">
-                Construction, Rénovation &amp; Aménagement
-              </span>
-            </h1>
-
-            {/* H2 Tagline */}
-            <div className="relative mb-8 animate-fade-in-up delay-200">
-              <h2 className="text-xl md:text-2xl font-display text-white tracking-wide uppercase">
-                Travaux tous corps de métier en Île-de-France
-              </h2>
-              <p className="text-concrete-400 mt-2 text-sm md:text-base">
-                Maçonnerie · Charpente · Menuiserie · Plomberie · Électricité · Carrelage · Peinture · Isolation
-              </p>
-            </div>
-
-            {/* Description - SEO rich paragraph */}
-            <p className="text-concrete-300 text-base md:text-lg max-w-xl leading-relaxed mb-10 animate-fade-in-up delay-400">
-              <strong className="text-white font-semibold">Maîtrise d&apos;œuvre et coordination complète</strong> de vos projets par des artisans qualifiés.
-              Rénovation intérieure, rénovation extérieure, extension maison, ravalement de façade — votre chantier entre les mains d&apos;experts tous corps d&apos;état.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-12 animate-fade-in-up delay-500">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl overflow-hidden shadow-lg shadow-copper/20"
-              >
-                <div className="absolute inset-0 bg-copper rounded-xl transition-transform duration-300 group-hover:translate-x-full" />
-                <div className="absolute inset-0 bg-white rounded-xl -translate-x-full transition-transform duration-300 group-hover:translate-x-0" />
-                <span className="relative z-10 font-bold uppercase tracking-wider text-sm text-white group-hover:text-concrete-900 transition-colors duration-300">Devis gratuit</span>
-                <svg className="relative z-10 w-5 h-5 transform group-hover:translate-x-1 transition-all duration-300 text-white group-hover:text-concrete-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <a
-                href="tel:0980336060"
-                className="group inline-flex items-center gap-3 px-8 py-4 border border-white/25 text-white
-                  rounded-xl hover:border-copper hover:text-copper transition-all duration-300 backdrop-blur-sm"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <span className="text-sm font-semibold tracking-wide">09 80 33 60 60</span>
-              </a>
-            </div>
-
-            {/* Certifications & Scroll indicator - same row */}
-            <div className="flex flex-wrap items-center justify-between gap-4 animate-fade-in-up delay-600">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-concrete-400 text-xs uppercase tracking-widest mr-2">Artisan certifié</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Certification Qualibat - Qualification des entreprises de bâtiment">QUALIBAT</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Reconnu Garant de l'Environnement - Travaux de rénovation énergétique">RGE</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Handibat - Accessibilité et adaptation du bâtiment">HANDIBAT</span>
-                <span className="px-3 py-1.5 bg-white/5 border border-white/15 text-concrete-300 text-xs font-medium tracking-wide backdrop-blur-sm rounded-lg" title="Qualifelec - Qualification des entreprises d'électricité">QUALIFELEC</span>
-              </div>
-
-              {/* Scroll indicator */}
-              <div className="hidden lg:flex items-center gap-3 animate-fade-in delay-800">
-                <div className="w-5.5 h-8.5 rounded-full border-2 border-white/30 flex justify-center pt-2">
-                  <div className="w-0.75 h-2 rounded-full bg-copper hero-scroll-dot" />
-                </div>
-                <span className="text-concrete-400 text-[9px] uppercase tracking-[0.25em]">Scroll</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Corps de métier Section */}
       <section className="py-24 lg:py-32 bg-concrete-950 relative overflow-hidden">
         {/* Background Pattern */}
@@ -477,6 +340,7 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
                       alt="Qualité GH Bâtiment"
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
+                      quality={75}
                       className="object-cover"
                     />
                   ) : (
@@ -486,6 +350,7 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       placeholder="blur"
+                      quality={75}
                       className="object-cover"
                     />
                   )}
@@ -537,6 +402,7 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
                     alt={album.title}
                     fill
                     sizes="(max-width: 768px) 50vw, 33vw"
+                    quality={75}
                     className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-50"
                   />
                 )}
@@ -551,81 +417,9 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
         </div>
       </section>
 
-      {/* Album Modal with Swiper */}
+      {/* Album Modal — lazy-loaded with Swiper */}
       {selectedAlbum && (
-        <div
-          className={`fixed inset-0 z-[100] bg-black transition-opacity duration-300
-            ${isEntering ? 'opacity-0' : isExiting ? 'opacity-0' : 'opacity-100'}`}
-        >
-          {/* Left side - Album title (vertically centered) */}
-          <div className="absolute left-3 lg:left-10 top-1/2 -translate-y-1/2 z-20">
-            <h3 className="font-display text-sm lg:text-xl text-white/90 tracking-wide">
-              {selectedAlbum.title}
-            </h3>
-          </div>
-
-          {/* Right side - Counter (vertically centered) */}
-          <div className="absolute right-3 lg:right-10 top-1/2 -translate-y-1/2 z-20">
-            <span className="text-white/60 text-xs lg:text-sm font-medium tracking-wider">
-              {currentImageIndex + 1} / {selectedAlbum.images.length}
-            </span>
-          </div>
-
-          {/* Swiper container */}
-          <div
-            className={`h-full flex items-center justify-center px-0 lg:px-24 py-16 lg:py-20 transition-all duration-300
-              ${isEntering ? 'scale-95 opacity-0' : isExiting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'}`}
-          >
-            <Swiper
-              modules={[EffectCreative, Keyboard]}
-              effect="creative"
-              creativeEffect={{
-                prev: {
-                  translate: ['-100%', 0, 0],
-                },
-                next: {
-                  translate: ['100%', 0, 0],
-                },
-              }}
-              keyboard={{ enabled: true }}
-              loop={selectedAlbum.images.length > 1}
-              speed={700}
-              className="w-full h-full max-w-6xl"
-              onSwiper={(swiper) => { swiperRef.current = swiper; }}
-              onSlideChange={(swiper) => setCurrentImageIndex(swiper.realIndex)}
-            >
-              {selectedAlbum.images.map((image, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="flex items-center justify-center cursor-pointer"
-                  onClick={() => swiperRef.current?.slideNext()}
-                >
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <Image
-                      src={image}
-                      alt={`${selectedAlbum.title} - Photo ${index + 1}`}
-                      fill
-                      sizes="(max-width: 1536px) 100vw, 1536px"
-                      className="object-contain"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-
-          {/* Bottom center - Close button (pill style) */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-            <button
-              onClick={closeAlbum}
-              className="px-6 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full
-                text-white text-sm font-medium tracking-wide transition-all duration-300
-                border border-white/20 hover:border-white/40"
-            >
-              Fermer
-            </button>
-          </div>
-        </div>
+        <AlbumModal album={selectedAlbum} onClose={closeAlbum} />
       )}
 
       {/* Partenaires Section */}
@@ -664,6 +458,7 @@ export default function HomePage({ engagementsSection = {}, galerieSection }: Ho
               fill
               sizes="(max-width: 1024px) 100vw, 1100px"
               placeholder="blur"
+              quality={75}
               className="object-cover"
             />
             <div className="absolute inset-0 bg-concrete-950/85" />

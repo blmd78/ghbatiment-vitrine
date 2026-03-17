@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
+import { HeroSection } from '@/components/shared/HeroSection';
 import HomePage from './home-page';
 
 export const dynamic = 'force-dynamic';
@@ -38,5 +39,10 @@ export default async function Page() {
     // DB pas encore prête ou données manquantes — on affiche la page avec les fallbacks
   }
 
-  return <HomePage galerieSection={galerieSection} />;
+  return (
+    <>
+      <HeroSection />
+      <HomePage galerieSection={galerieSection} />
+    </>
+  );
 }
