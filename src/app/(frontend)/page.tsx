@@ -29,13 +29,14 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const payload = await getPayload({ config: configPromise });
+  let galerieSection = null;
 
-  const galerieSection = await payload.findGlobal({ slug: 'galerie', depth: 2 });
+  try {
+    const payload = await getPayload({ config: configPromise });
+    galerieSection = await payload.findGlobal({ slug: 'galerie', depth: 2 });
+  } catch {
+    // DB pas encore prête ou données manquantes — on affiche la page avec les fallbacks
+  }
 
-  return (
-    <HomePage
-      galerieSection={galerieSection}
-    />
-  );
+  return <HomePage galerieSection={galerieSection} />;
 }
