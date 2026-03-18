@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans, Bebas_Neue } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import '@/styles/globals.css';
@@ -119,6 +121,8 @@ export default function FrontendLayout({
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
