@@ -44,10 +44,7 @@ export async function POST(request: Request) {
     });
 
     if (users.length === 0) {
-      return Response.json(
-        { success: false, message: 'Vous n\'êtes pas autorisé à accéder à cet espace. Contactez un administrateur.' },
-        { status: 404 },
-      );
+      return Response.json({ success: true, message: GENERIC_MESSAGE });
     }
 
     const user = users[0];
