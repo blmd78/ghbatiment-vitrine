@@ -216,7 +216,7 @@ export default function OTPLogin() {
       ) : (
         <div style={styles.form}>
           <button type="button" onClick={handleBack} style={styles.backButton}>
-            ← Changer d'email
+            ← Changer d&apos;email
           </button>
 
           <p style={styles.subtitle}>
