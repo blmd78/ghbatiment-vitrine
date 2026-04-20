@@ -29,12 +29,25 @@ export default function Navbar() {
   // The displayed index is either hovered or active
   const displayedIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
 
-  // Track scroll position
+  // Track scroll position (throttled via rAF, single state flip on threshold cross)
   useEffect(() => {
+    let ticking = false;
+    let lastScrolled = window.scrollY > 50;
+    setScrolled(lastScrolled);
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const next = window.scrollY > 50;
+        if (next !== lastScrolled) {
+          lastScrolled = next;
+          setScrolled(next);
+        }
+        ticking = false;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -84,6 +97,7 @@ export default function Navbar() {
       </div>
 
       <nav
+        style={{ contain: 'layout style', willChange: 'transform' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500
           ${scrolled
             ? 'bg-concrete-950/98 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)]'

@@ -1,7 +1,4 @@
-'use client';
-
 import Image from 'next/image';
-import { useRef, useEffect } from 'react';
 import { ICON_PATHS, DEFAULT_ENGAGEMENTS, DEFAULT_STATS } from '@/lib/constants';
 import renovationImg from '../../../../public/images/Savoir-faire/renovation.webp';
 
@@ -30,39 +27,6 @@ type Props = {
 };
 
 export function EngagementsSection({ data = {} }: Props) {
-  const revealRefs = useRef<(HTMLElement | null)[]>([]);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    observerRef.current = observer;
-    revealRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-    };
-  }, []);
-
-  const addToRefs = (el: HTMLElement | null) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-      observerRef.current?.observe(el);
-    }
-  };
-
   const engagements = data.engagements?.length ? data.engagements : DEFAULT_ENGAGEMENTS;
   const stats = data.stats?.length ? data.stats : DEFAULT_STATS;
 
@@ -70,7 +34,7 @@ export function EngagementsSection({ data = {} }: Props) {
     <section id="engagements" className="py-24 lg:py-32 bg-white overflow-hidden">
       <div className="container-wide">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div ref={addToRefs} className="reveal">
+          <div className="reveal">
             <span className="text-copper text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
               {data.label ?? 'Nos engagements'}
             </span>
@@ -118,7 +82,7 @@ export function EngagementsSection({ data = {} }: Props) {
             )}
           </div>
 
-          <div ref={addToRefs} className="reveal-right relative px-8 pb-8">
+          <div className="reveal-right relative px-8 pb-8">
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 {data.image?.url ? (

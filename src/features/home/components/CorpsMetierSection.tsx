@@ -1,6 +1,4 @@
-'use client';
-
-import { ReactNode, useRef, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { METIERS } from '@/lib/constants';
 
 const METIER_ICONS: Record<string, ReactNode> = {
@@ -72,39 +70,6 @@ const METIER_ICONS: Record<string, ReactNode> = {
 };
 
 export function CorpsMetierSection() {
-  const revealRefs = useRef<(HTMLElement | null)[]>([]);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    observerRef.current = observer;
-    revealRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-    };
-  }, []);
-
-  const addToRefs = (el: HTMLElement | null) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-      observerRef.current?.observe(el);
-    }
-  };
-
   return (
     <section className="py-24 lg:py-32 bg-concrete-950 relative overflow-hidden">
       <div
@@ -116,7 +81,7 @@ export function CorpsMetierSection() {
       />
 
       <div className="container-wide relative z-10">
-        <div ref={addToRefs} className="reveal text-center mb-16">
+        <div className="reveal text-center mb-16">
           <span className="text-copper text-sm font-medium tracking-[0.2em] uppercase mb-4 block">
             Corps de métier
           </span>
@@ -125,14 +90,13 @@ export function CorpsMetierSection() {
           </h2>
         </div>
 
-        <div ref={addToRefs} className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
-          {METIERS.map((metier, index) => (
+        <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
+          {METIERS.map((metier) => (
             <div
               key={metier}
               className="group bg-white/5 border border-white/10 rounded-xl p-6 lg:p-8 text-center
                 hover:bg-copper/15 hover:border-copper/30
                 transition-all duration-300"
-              style={{ animationDelay: `${index * 50}ms` }}
             >
               <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-copper/15 flex items-center justify-center
                 group-hover:bg-copper/25 transition-colors duration-300">

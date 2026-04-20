@@ -1,24 +1,13 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
 import { CorpsMetierSection } from '@/features/home/components/CorpsMetierSection';
 import { EngagementsSection } from '@/features/home/components/EngagementsSection';
 import { GalerieSection } from '@/features/home/components/GalerieSection';
 import { PartenairesSection } from '@/features/home/components/PartenairesSection';
 import { CTASection } from '@/features/home/components/CTASection';
-
-const RefreshRouteOnSave = dynamic(
-  () =>
-    import('@payloadcms/live-preview-react').then(
-      (mod) => mod.RefreshRouteOnSave,
-    ),
-  { ssr: false },
-);
+import { LivePreviewListener } from '@/components/payload/LivePreviewListener';
 
 type PayloadMedia = { url?: string | null; alt?: string | null };
 type PayloadAlbum = { id?: string | null; title: string; images?: (string | PayloadMedia)[] | null };
-type GalerieSection = { albums?: PayloadAlbum[] | null };
+type GalerieSectionData = { albums?: PayloadAlbum[] | null };
 
 type EngagementItem = {
   id?: string;
@@ -42,18 +31,13 @@ type EngagementsSectionData = {
 
 type HomePageProps = {
   engagementsSection?: EngagementsSectionData;
-  galerieSection?: GalerieSection | null;
+  galerieSection?: GalerieSectionData | null;
 };
 
 export default function HomePage({ engagementsSection = {}, galerieSection }: HomePageProps) {
-  const router = useRouter();
-
   return (
     <>
-      <RefreshRouteOnSave
-        refresh={router.refresh}
-        serverURL={process.env.NEXT_PUBLIC_ADMIN_URL || process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}
-      />
+      <LivePreviewListener />
       <CorpsMetierSection />
       <EngagementsSection data={engagementsSection} />
       <GalerieSection albums={galerieSection?.albums} />

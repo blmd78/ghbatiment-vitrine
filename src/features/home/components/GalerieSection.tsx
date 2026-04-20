@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useRef, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { COL_SPANS } from '@/lib/constants';
 import { normalizeUrl } from '@/lib/utils/url';
@@ -21,38 +21,6 @@ type Props = {
 
 export function GalerieSection({ albums = [] }: Props) {
   const [selectedAlbum, setSelectedAlbum] = useState<DisplayAlbum | null>(null);
-  const revealRefs = useRef<(HTMLElement | null)[]>([]);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    observerRef.current = observer;
-    revealRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-    };
-  }, []);
-
-  const addToRefs = (el: HTMLElement | null) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-      observerRef.current?.observe(el);
-    }
-  };
 
   const displayAlbums: DisplayAlbum[] = (albums || []).map((album: PayloadAlbum, i: number) => {
     const imgs = (album.images || []).map((img: string | PayloadMedia) => {
@@ -74,7 +42,7 @@ export function GalerieSection({ albums = [] }: Props) {
     <>
       <section className="py-6 lg:py-10 bg-[#f5f4f0]">
         <div className="px-4 lg:px-16 max-w-[1600px] mx-auto w-full">
-          <div ref={addToRefs} className="reveal mb-6 lg:mb-8">
+          <div className="reveal mb-6 lg:mb-8">
             <div className="flex items-center gap-4">
               <span className="text-concrete-400">—</span>
               <h2 className="font-display text-2xl md:text-3xl text-concrete-900 tracking-tight uppercase">
@@ -87,7 +55,6 @@ export function GalerieSection({ albums = [] }: Props) {
             {displayAlbums.map((album, index) => (
               <button
                 key={album.id}
-                ref={addToRefs}
                 onClick={() => openAlbum(album)}
                 className={`reveal group col-span-1 ${COL_SPANS[index % 6]} focus:outline-none cursor-pointer`}
               >

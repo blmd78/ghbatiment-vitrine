@@ -233,27 +233,43 @@
   }
 }
 
-/* Scroll animations (Intersection Observer) */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+/* Scroll-driven reveal animations (CSS only, no JS) */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
+.reveal,
 .reveal-right {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
 }
 
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: revealUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+
+  .reveal-right {
+    animation: revealRight linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 } /* end @layer components */

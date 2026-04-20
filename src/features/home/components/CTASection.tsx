@@ -1,44 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useEffect } from 'react';
 import bandeauImg from '../../../../public/images/Savoir-faire/bandeau.webp';
 
 export function CTASection() {
-  const revealRefs = useRef<(HTMLElement | null)[]>([]);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    observerRef.current = observer;
-    revealRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      observer.disconnect();
-      observerRef.current = null;
-    };
-  }, []);
-
-  const addToRefs = (el: HTMLElement | null) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-      observerRef.current?.observe(el);
-    }
-  };
-
   return (
     <section className="px-4 lg:px-16 pb-6 lg:pb-10">
       <div className="max-w-350 mx-auto relative rounded-3xl overflow-hidden">
@@ -56,7 +20,7 @@ export function CTASection() {
           <div className="absolute inset-0 bg-gradient-to-r from-concrete-950/40 via-transparent to-concrete-950/40" />
         </div>
 
-        <div ref={addToRefs} className="reveal relative z-10 px-8 py-16 md:px-16 lg:px-24 lg:py-24 text-center">
+        <div className="reveal relative z-10 px-8 py-16 md:px-16 lg:px-24 lg:py-24 text-center">
           <span className="inline-flex items-center gap-3 mb-6">
             <span className="w-8 h-px bg-copper" />
             <span className="text-copper text-xs font-semibold uppercase tracking-[0.3em]">Parlons-en</span>
