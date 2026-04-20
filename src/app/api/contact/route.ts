@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { z } from 'zod/v4';
+import { createContactSchema } from '@/lib/schemas/contact';
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const SITE_NAME = 'GH Bâtiment';
@@ -57,16 +57,6 @@ if (typeof globalThis.setInterval === 'function') {
   }, 10 * 60 * 1000);
   if (typeof timer === 'object' && 'unref' in timer) { (timer as NodeJS.Timeout).unref(); }
 }
-
-// ─── Validation ──────────────────────────────────────────────────────────────
-const contactSchema = z.object({
-  name: z.string().min(2, 'Nom requis').max(200),
-  email: z.email('Email invalide'),
-  phone: z.string().max(30).optional().default(''),
-  subject: z.string().max(200).optional().default(''),
-  message: z.string().min(10, 'Message trop court').max(5000),
-  turnstileToken: z.string().min(1, 'Captcha requis'),
-});
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function escapeHtml(s: string): string {
@@ -247,7 +237,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const result = contactSchema.safeParse(body);
+  const result = createContactSchema.safeParse(body);
 
   if (!result.success) {
     console.error('Validation errors:', JSON.stringify(result.error.issues, null, 2));
