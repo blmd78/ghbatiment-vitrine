@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
+import { unstable_cache } from 'next/cache';
 import { HeroSection } from '@/components/shared/HeroSection';
 import HomePage from './home-page';
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title:
@@ -29,12 +28,33 @@ export const metadata: Metadata = {
   },
 };
 
+const getGalerieSection = unstable_cache(
+  async () => {
+    const payload = await getPayload({ config: configPromise });
+    return payload.findGlobal({
+      slug: 'galerie',
+      depth: 2,
+      select: {
+        albums: {
+          id: true,
+          title: true,
+          images: {
+            url: true,
+            alt: true,
+          },
+        },
+      },
+    });
+  },
+  ['galerie-section'],
+  { tags: ['galerie-section'], revalidate: false },
+);
+
 export default async function Page() {
   let galerieSection = null;
 
   try {
-    const payload = await getPayload({ config: configPromise });
-    galerieSection = await payload.findGlobal({ slug: 'galerie', depth: 2 });
+    galerieSection = await getGalerieSection();
   } catch {
     // DB pas encore prête ou données manquantes — on affiche la page avec les fallbacks
   }

@@ -13,6 +13,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
+    formats: ['image/webp'],
+    minimumCacheTTL: 2592000,
     remotePatterns: [
       { protocol: 'http', hostname: 'localhost', port: '3000' },
       { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },

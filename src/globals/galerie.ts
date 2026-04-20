@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const GalerieGlobal: GlobalConfig = {
   slug: 'galerie',
@@ -11,6 +11,7 @@ export const GalerieGlobal: GlobalConfig = {
     afterChange: [
       () => {
         revalidatePath('/');
+        revalidateTag('galerie-section', 'layout');
       },
     ],
   },
