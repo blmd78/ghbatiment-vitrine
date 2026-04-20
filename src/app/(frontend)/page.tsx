@@ -10,6 +10,21 @@ export const metadata: Metadata = {
     'GH Bâtiment | Entreprise générale du bâtiment tous corps de métier - Construction, Rénovation, Aménagement en Île-de-France',
   description:
     "GH Bâtiment, entreprise générale du bâtiment et maîtrise d'œuvre tous corps d'état en Île-de-France. Construction, rénovation intérieure et extérieure, extension maison, ravalement de façade. Artisans qualifiés certifiés Qualibat, RGE. Devis gratuit.",
+  keywords: [
+    'entreprise bâtiment Wissous',
+    'entreprise bâtiment Essonne',
+    'entreprise bâtiment 91',
+    'entreprise générale bâtiment Île-de-France',
+    'tous corps de métier Wissous',
+    'rénovation Wissous',
+    'rénovation Essonne 91',
+    'construction maison Essonne',
+    'extension maison Île-de-France',
+    'ravalement façade Wissous',
+    'maîtrise d\'œuvre Essonne',
+    'artisan Qualibat RGE Île-de-France',
+    'devis travaux Wissous 91320',
+  ],
   alternates: {
     canonical: '/',
   },
