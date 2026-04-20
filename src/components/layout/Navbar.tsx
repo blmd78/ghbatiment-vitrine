@@ -118,7 +118,7 @@ export default function Navbar() {
                 alt="GH Bâtiment"
                 width={50}
                 height={50}
-                placeholder="blur"
+                priority
                 className={`transition-all duration-300 group-hover:brightness-125 group-hover:opacity-80
                   ${scrolled ? 'h-10 w-auto' : 'h-12 w-auto'}`}
               />
