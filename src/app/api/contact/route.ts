@@ -105,7 +105,7 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
 function buildContactEmailHtml(data: {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   subject: string;
   message: string;
 }): string {
